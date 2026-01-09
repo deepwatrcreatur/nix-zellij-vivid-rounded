@@ -121,8 +121,22 @@ The module respects home-manager conventions. You can:
 The screenshot shows:
 - Light blue (`#89B4FA`) top and bottom bars
 - Light green (`#a6e3a1`) active tab highlight
-- Vim-style keybinding hints in the status bar
-- Multiple tabs with smooth visual separation
+- Vim-style keybinding hints in the status bar with colored boxes by category
+- Multiple tabs with pill-shaped backgrounds
+- System info in top-right: OS symbol + user@host + memory usage
+
+### Current State (Recent Updates)
+
+✅ **Fixed:**
+- Ctrl+Alt modifier shown in status bar
+- User@host correctly displayed in top-right corner
+- Bottom status bar with colored boxes organizing keybinding hints
+- Clipboard auto-copy on text selection
+- Rounded pane frame corners (ui.pane_frames.rounded_corners)
+
+🔄 **In Progress:**
+- Tab pill-shape rounding (working on rounded visual appearance)
+- Will update screenshot once tab styling is finalized
 
 ## Integration with Your Multi-Host Setup
 
