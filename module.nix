@@ -186,19 +186,21 @@ in {
       layout {
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Standard vivid bar at the top with light blue background and session/tabs info
-                  format_left   "#[bg=#89B4FA,fg=#1e1e2e,bold]  🖥 {session} #[bg=#1e1e2e,fg=#89B4FA] {tabs}"
-                  format_right  "#[bg=#1e1e2e,fg=#89B4FA,bold] #[bg=#89B4FA,fg=#1e1e2e,bold]  {command_os_symbol} {command_user_host} #[fg=#a6e3a1,bold]{command_memory}  #[bg=#1e1e2e,fg=#89B4FA] "
+                  // Top bar: accent colors on icons only, rest is muted
+                  // Terminal icon gets green accent pill, session/tabs are muted text
+                  format_left   "#[bg=#a6e3a1,fg=#1e1e2e,bold] 🖥 #[bg=#1e1e2e,fg=#cdd6f4,bold] {session} #[fg=#6C7086] {tabs}"
+                  // Top right: folder/system icon gets accent, rest is muted
+                  format_right  "#[bg=#1e1e2e,fg=#6C7086] 📁 #[fg=#cdd6f4]{command_user_host} #[fg=#a6e3a1]{command_memory}"
 
                   format_space  ""
 
                   border_enabled  "false"
 
-                  // Pill-shaped tabs with background color blocks
-                  // Inactive tabs: gray text, no background fill to stand out less
-                  tab_normal   "#[fg=#6C7086] {index} {name} "
-                  // Active tabs: white text on bright green with dark "rounded caps" on sides for pill effect
-                  tab_active   "#[bg=#313244,fg=#a6e3a1,bold] #[bg=#a6e3a1,fg=#1e1e2e,bold]{index} {name}#[bg=#1e1e2e,fg=#a6e3a1] "
+                  // Refined tab styling: accent color on active tab index only, rest muted
+                  // Inactive tabs: gray text with gray index
+                  tab_normal   "#[fg=#6C7086] {index} #[fg=#6C7086]{name} "
+                  // Active tabs: index gets green pill, name stays muted for subtlety
+                  tab_active   "#[bg=#a6e3a1,fg=#1e1e2e,bold] {index} #[bg=#1e1e2e,fg=#cdd6f4] {name} "
 
                   command_os_symbol_command     "uname -s | sed 's/Linux/󰌽/; s/Darwin/󰀵/; s/NixOS/󱄅/'"
                   command_os_symbol_format      "{stdout}"
@@ -219,19 +221,20 @@ in {
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Vivid Guide/Status bar at the bottom - text only, no backgrounds on hints
-                  format_left   "{mode}"
-                  format_center "#[fg=#89B4FA,bold]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  format_right  "#[bg=#1e1e2e,fg=#cba6f7,bold] #[bg=#cba6f7,fg=#1e1e2e,bold]{command_git_branch}#[bg=#1e1e2e,fg=#cba6f7] "
+                  // Bottom bar: subtle mode indicator on left, muted hints in center, branch with accent on right
+                  format_left   "{mode} "
+                  format_center "#[fg=#6C7086,bold]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
+                  format_right  "#[fg=#cba6f7,bold]🌿 {command_git_branch} "
                   format_space  ""
 
-                  mode_normal  "#[bg=#89B4FA,fg=#1e1e2e,bold] NORMAL #[bg=#1e1e2e,fg=#89B4FA]"
-                  mode_locked  "#[bg=#f38ba8,fg=#1e1e2e,bold] LOCKED #[bg=#1e1e2e,fg=#f38ba8]"
-                  mode_resize  "#[bg=#f9e2af,fg=#1e1e2e,bold] RESIZE #[bg=#1e1e2e,fg=#f9e2af]"
-                  mode_pane    "#[bg=#cba6f7,fg=#1e1e2e,bold] PANE #[bg=#1e1e2e,fg=#cba6f7]"
-                  mode_tab     "#[bg=#a6e3a1,fg=#1e1e2e,bold] TAB #[bg=#1e1e2e,fg=#a6e3a1]"
-                  mode_scroll  "#[bg=#fab387,fg=#1e1e2e,bold] SCROLL #[bg=#1e1e2e,fg=#fab387]"
-                  mode_session "#[bg=#cba6f7,fg=#1e1e2e,bold] SESSION #[bg=#1e1e2e,fg=#cba6f7]"
+                  // Mode indicators - colored text only, accent color varies by mode for subtlety
+                  mode_normal  "#[fg=#89B4FA,bold]NORMAL"
+                  mode_locked  "#[fg=#f38ba8,bold]LOCKED"
+                  mode_resize  "#[fg=#f9e2af,bold]RESIZE"
+                  mode_pane    "#[fg=#cba6f7,bold]PANE"
+                  mode_tab     "#[fg=#a6e3a1,bold]TAB"
+                  mode_scroll  "#[fg=#fab387,bold]SCROLL"
+                  mode_session "#[fg=#cba6f7,bold]SESSION"
 
                   command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
                   command_git_branch_format      "{stdout}"
