@@ -133,10 +133,11 @@ The screenshot shows:
 - Bottom status bar with colored boxes organizing keybinding hints
 - Clipboard auto-copy on text selection
 - Rounded pane frame corners (ui.pane_frames.rounded_corners)
+- **Tab pill-shape styling restored** - Using background color block approach for true rounded visual effect
+- **Top-right system info box** - Added pill-shaped styling with light blue background
+- **Bottom-right git branch** - Added pill-shaped styling with purple background
 
-🔄 **In Progress:**
-- Tab pill-shape rounding (working on rounded visual appearance)
-- Will update screenshot once tab styling is finalized
+All visual polish elements now complete - tabs, mode indicators, and status displays have proper rounded pill shapes using background color contrast effects (matching the original design approach).
 
 ## Integration with Your Multi-Host Setup
 
