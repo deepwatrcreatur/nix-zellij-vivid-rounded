@@ -193,10 +193,11 @@ in {
 
                   border_enabled  "false"
 
-                  // Rounded tabs with vivid light green highlight on active tab
-                  // Uses Unicode rounded box characters (╭ ╮) for pill-shaped appearance
-                  tab_normal   "#[fg=#6C7086]╭ {index} {name} ╮"
-                  tab_active   "#[bg=#313244,fg=#a6e3a1,bold]╭#[bg=#a6e3a1,fg=#1e1e2e,bold] {index} {name} #[bg=#313244,fg=#a6e3a1]╮"
+                  // Pill-shaped tabs with solid colored backgrounds
+                  // Inactive tabs: gray text on dark
+                  tab_normal   "#[fg=#6C7086] {index} {name} "
+                  // Active tabs: bright green pill-shaped background
+                  tab_active   "#[bg=#a6e3a1,fg=#1e1e2e,bold] {index} {name} "
 
                   command_os_symbol_command     "uname -s | sed 's/Linux/󰌽/; s/Darwin/󰀵/; s/NixOS/󱄅/'"
                   command_os_symbol_format      "{stdout}"
@@ -217,9 +218,9 @@ in {
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Vivid Guide/Status bar at the bottom with Ctrl+Alt hints
+                  // Vivid Guide/Status bar at the bottom with colored boxes for key hints
                   format_left   "{mode}"
-                  format_center "#[fg=#89B4FA,bold]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
+                  format_center "#[bg=#89B4FA,fg=#1e1e2e,bold] [t]ab [p]ane #[bg=#1e1e2e] #[bg=#a6e3a1,fg=#1e1e2e,bold] [s]plit [v]ert #[bg=#1e1e2e] #[bg=#cba6f7,fg=#1e1e2e,bold] [h/j/k/l]focus [f]ull [q]uit #[bg=#1e1e2e]"
                   format_right  "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]  {command_git_branch} "
                   format_space  ""
 
