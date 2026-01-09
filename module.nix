@@ -182,9 +182,10 @@ in {
 
                   border_enabled  "false"
 
-                  // Rounded tabs with vivid light green highlight on active tab
-                  tab_normal   "#[fg=#6C7086] {index} {name} "
-                  tab_active   "#[bg=#313244,fg=#a6e3a1,bold] #[bg=#a6e3a1,fg=#1e1e2e,bold]{index} {name}#[bg=#1e1e2e,fg=#a6e3a1] "
+                  // Rounded pill-shaped tabs with vivid light green highlight on active tab
+                  // The rounded appearance comes from the background color creating a visual "pill" effect
+                  tab_normal   "#[fg=#6C7086]  {index}:{name}  #[fg=#6C7086]"
+                  tab_active   "#[bg=#a6e3a1,fg=#1e1e2e,bold] {index}:{name} #[bg=#1e1e2e,fg=#a6e3a1] "
 
                   datetime        "{format}"
                   datetime_format "%H:%M"
