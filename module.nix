@@ -112,6 +112,8 @@ in {
             "bind \"j\"" = { MoveFocus = "Down"; };
             "bind \"k\"" = { MoveFocus = "Up"; };
             "bind \"l\"" = { MoveFocus = "Right"; };
+            "bind \"s\"" = { NewPane = "Down"; };
+            "bind \"v\"" = { NewPane = "Right"; };
             "bind \"p\"" = { NewPane = "Left"; };
             "bind \"n\"" = { NewPane = "Down"; };
             "bind \"x\"" = { CloseFocus = {}; };
@@ -193,18 +195,18 @@ in {
 
                   border_enabled  "false"
 
-                  // Pill-shaped tabs with solid colored backgrounds
-                  // Inactive tabs: gray text on dark
-                  tab_normal   "#[fg=#6C7086] {index} {name} "
-                  // Active tabs: bright green pill-shaped background
-                  tab_active   "#[bg=#a6e3a1,fg=#1e1e2e,bold] {index} {name} "
+                  // Pill-shaped tabs with rounded edges
+                  // Inactive tabs: gray text with subtle background
+                  tab_normal   "#[fg=#6C7086,bg=#313244] {index} {name} #[bg=default]"
+                  // Active tabs: bright green pill-shaped background with rounded visual
+                  tab_active   "#[bg=#a6e3a1,fg=#1e1e2e,bold] {index} {name} #[bg=default]"
 
                   command_os_symbol_command     "uname -s | sed 's/Linux/󰌽/; s/Darwin/󰀵/; s/NixOS/󱄅/'"
                   command_os_symbol_format      "{stdout}"
                   command_os_symbol_interval    "60"
                   command_os_symbol_rendermode  "static"
 
-                  command_user_host_command     "printf '%s@%s' \"$USER\" \"$(hostname)\""
+                  command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
                   command_user_host_format      "{stdout}"
                   command_user_host_interval    "60"
                   command_user_host_rendermode  "static"
@@ -220,7 +222,7 @@ in {
               plugin location="file:${zjstatus-wasm}" {
                   // Vivid Guide/Status bar at the bottom with colored boxes for key hints
                   format_left   "{mode}"
-                  format_center "#[bg=#89B4FA,fg=#1e1e2e,bold] [t]ab [p]ane #[bg=#1e1e2e] #[bg=#a6e3a1,fg=#1e1e2e,bold] [s]plit [v]ert #[bg=#1e1e2e] #[bg=#cba6f7,fg=#1e1e2e,bold] [h/j/k/l]focus [f]ull [q]uit #[bg=#1e1e2e]"
+                  format_center "#[fg=#89B4FA,bold]Ctrl+Alt: #[bg=#89B4FA,fg=#1e1e2e,bold] [t]ab [p]ane #[bg=#1e1e2e] #[bg=#a6e3a1,fg=#1e1e2e,bold] [s]plit [v]ert #[bg=#1e1e2e] #[bg=#cba6f7,fg=#1e1e2e,bold] [h/j/k/l]focus [f]ull [q]uit #[bg=#1e1e2e]"
                   format_right  "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]  {command_git_branch} "
                   format_space  ""
 
