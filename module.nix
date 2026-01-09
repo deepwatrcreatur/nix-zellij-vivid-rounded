@@ -218,10 +218,10 @@ in {
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Vivid Guide/Status bar at the bottom with colored boxes for key hints
+                  // Vivid Guide/Status bar at the bottom with uniform light blue boxes
                   format_left   "{mode}"
-                  format_center "#[fg=#89B4FA,bold]Ctrl+Alt: #[bg=#89B4FA,fg=#1e1e2e,bold] [t]ab [p]ane #[bg=#1e1e2e] #[bg=#a6e3a1,fg=#1e1e2e,bold] [s]plit [v]ert #[bg=#1e1e2e] #[bg=#cba6f7,fg=#1e1e2e,bold] [h/j/k/l]focus [f]ull [q]uit #[bg=#1e1e2e]"
-                  format_right  "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]  {command_git_branch} "
+                  format_center "#[fg=#89B4FA,bold]Ctrl+Alt: #[bg=#89B4FA,fg=#1e1e2e,bold] [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit #[bg=#1e1e2e]"
+                  format_right  "#[bg=#89B4FA,fg=#1e1e2e,bold]  {command_git_branch}  #[bg=default]"
                   format_space  ""
 
                   mode_normal  "#[bg=#89B4FA,fg=#1e1e2e,bold] NORMAL #[bg=#1e1e2e,fg=#89B4FA]"
