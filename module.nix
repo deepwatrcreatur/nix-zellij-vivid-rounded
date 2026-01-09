@@ -188,7 +188,7 @@ in {
               plugin location="file:${zjstatus-wasm}" {
                   // Standard vivid bar at the top with light blue background and session/tabs info
                   format_left   "#[bg=#89B4FA,fg=#1e1e2e,bold]  {session} #[bg=#1e1e2e,fg=#89B4FA] {tabs}"
-                  format_right  "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold] 󰃭 {datetime} "
+                  format_right  "#[fg=#89B4FA,bold]{command_os_symbol} {command_user_host} #[fg=#a6e3a1,bold]{command_memory} "
                   format_space  ""
 
                   border_enabled  "false"
@@ -198,9 +198,20 @@ in {
                   tab_normal   "#[fg=#6C7086]╭ {index} {name} ╮"
                   tab_active   "#[bg=#313244,fg=#a6e3a1,bold]╭#[bg=#a6e3a1,fg=#1e1e2e,bold] {index} {name} #[bg=#313244,fg=#a6e3a1]╮"
 
-                  datetime        "{format}"
-                  datetime_format "%H:%M"
-                  datetime_timezone "Europe/Berlin"
+                  command_os_symbol_command     "uname -s | sed 's/Linux/󰌽/; s/Darwin/󰀵/; s/NixOS/󱄅/'"
+                  command_os_symbol_format      "{stdout}"
+                  command_os_symbol_interval    "60"
+                  command_os_symbol_rendermode  "static"
+
+                  command_user_host_command     "echo $(whoami)@$(hostname)"
+                  command_user_host_format      "{stdout}"
+                  command_user_host_interval    "60"
+                  command_user_host_rendermode  "static"
+
+                  command_memory_command        "free -h | awk 'NR==2 {print $3 \" / \" $2}' | sed 's/Gi/G/g'"
+                  command_memory_format         "{stdout}"
+                  command_memory_interval       "5"
+                  command_memory_rendermode     "static"
               }
           }
           pane
