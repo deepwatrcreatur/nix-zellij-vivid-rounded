@@ -18,6 +18,36 @@ in
 {
   options.programs.zellij-vivid-rounded = {
     enable = mkEnableOption "Zellij with vivid colors, rounded tabs, and Ctrl-Alt keybindings";
+
+    accentColor = mkOption {
+      type = types.str;
+      default = "#89B4FA";
+      description = "Primary accent color for UI elements (hex color)";
+    };
+
+    accentColor2 = mkOption {
+      type = types.str;
+      default = "#89dceb";
+      description = "Secondary accent color for UI elements (hex color)";
+    };
+
+    accentColor3 = mkOption {
+      type = types.str;
+      default = "#cba6f7";
+      description = "Tertiary accent color for UI elements (hex color)";
+    };
+
+    boxBackground = mkOption {
+      type = types.str;
+      default = "#313244";
+      description = "Background color for highlighted text boxes (hex color)";
+    };
+
+    modeBackground = mkOption {
+      type = types.str;
+      default = "#313244";
+      description = "Background color for mode indicator boxes (hex color)";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -335,15 +365,15 @@ in
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
                   // Top bar with subtle highlighted boxes and corner accents
-                  format_left   "#[bg=#2a2b3a,fg=#89B4FA]  {session} #[fg=#585b70]"
-                  format_right  "#[bg=#2a2b3a,fg=#89dceb]󰃭 {command_user_host} #[fg=#89dceb]"
+                  format_left   "#[fg=${cfg.accentColor}]#[bg=${cfg.boxBackground},fg=${cfg.accentColor}]  {session} #[fg=#6C7086]{tabs}"
+                  format_right  "#[fg=${cfg.accentColor2}]#[bg=${cfg.boxBackground},fg=${cfg.accentColor2}] 󰃭 {command_user_host} "
                   format_space  ""
 
                   border_enabled  "false"
 
                   // Subtle highlighted boxes with corner accents only
                   tab_normal   "#[fg=#6C7086] {index} {name}"
-                  tab_active   "#[bg=#2a2b3a,fg=#a6e3a1]  {index} {name} #[fg=#a6e3a1]"
+                  tab_active   "#[fg=#a6e3a1]#[bg=${cfg.boxBackground},fg=#a6e3a1]  {index} {name} "
 
                   command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
                   command_user_host_format      "{stdout}"
@@ -357,20 +387,20 @@ in
                   // Bottom bar with subtle mode boxes and corner accents
                   format_left   "{mode}"
                   format_center "#[fg=#6C7086]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  format_right  "#[bg=#2a2b3a,fg=#cba6f7] 󰍛 {command_memory} #[fg=#cba6f7]"
+                  format_right  "#[fg=${cfg.accentColor3}]#[bg=${cfg.modeBackground},fg=${cfg.accentColor3}] 󰍛 {command_memory} "
                   format_space  ""
 
                   // Subtle mode boxes with corner accents on appropriate sides
-                  mode_normal  "#[bg=#2a2b3a,fg=#89B4FA]  NORMAL  #[fg=#89B4FA]"
-                  mode_locked  "#[bg=#2a2b3a,fg=#f38ba8]  LOCKED  #[fg=#f38ba8]"
-                  mode_resize  "#[bg=#2a2b3a,fg=#f9e2af]  RESIZE  #[fg=#f9e2af]"
-                  mode_pane    "#[bg=#2a2b3a,fg=#cba6f7]  PANE  #[fg=#cba6f7]"
-                  mode_tab     "#[bg=#2a2b3a,fg=#a6e3a1]  TAB  #[fg=#a6e3a1]"
-                  mode_scroll  "#[bg=#2a2b3a,fg=#fab387]  SCROLL  #[fg=#cba6f7]"
-                  mode_session "#[bg=#2a2b3a,fg=#cba6f7]  SESSION  #[fg=#cba6f7]"
+                  mode_normal  "#[bg=${cfg.modeBackground},fg=${cfg.accentColor}]  NORMAL  #[fg=${cfg.accentColor}]"
+                  mode_locked  "#[bg=${cfg.modeBackground},fg=#f38ba8]  LOCKED  #[fg=#f38ba8]"
+                  mode_resize  "#[bg=${cfg.modeBackground},fg=#f9e2af]  RESIZE  #[fg=#f9e2af]"
+                  mode_pane    "#[bg=${cfg.modeBackground},fg=${cfg.accentColor3}]  PANE  #[fg=${cfg.accentColor3}]"
+                  mode_tab     "#[bg=${cfg.modeBackground},fg=#a6e3a1]  TAB  #[fg=#a6e3a1]"
+                  mode_scroll  "#[bg=${cfg.modeBackground},fg=#fab387]  SCROLL  #[fg=${cfg.accentColor3}]"
+                  mode_session "#[bg=${cfg.modeBackground},fg=${cfg.accentColor3}]  SESSION  #[fg=${cfg.accentColor3}]"
 
-                  // Show memory usage in bottom right
-                  command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \\$3 \\\"/\\\" \\$2 \\\" GB\\\"}\"'"
+                  // Show memory usage in bottom right (GB/GB format)
+                  command_memory_command     "bash -c 'free -h | grep Mem | awk \"{gsub(/Gi/, \\\"GB\\\", \\$1); gsub(/Mi/, \\\"MB\\\", \\$1); print \\$3 \\\"/\\\" \\$2}\"'"
                   command_memory_format      "{stdout}"
                   command_memory_interval    "5"
                   command_memory_rendermode  "static"
