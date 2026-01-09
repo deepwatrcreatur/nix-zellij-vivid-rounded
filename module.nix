@@ -222,12 +222,12 @@ in {
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Bottom bar: mode in small light blue pill, hints muted, git branch subtle text
-                  // Mode indicator: light blue pill on mode text only
-                  format_left   "#[bg=#313244,fg=#89B4FA,bold] #[bg=#89B4FA,fg=#1e1e2e,bold]{mode}#[bg=#1e1e2e,fg=#89B4FA] "
+                  // Bottom bar: asymmetrical accents - pill right of mode, pill left of branch
+                  // Mode indicator: subtle text on left, rounded light blue pill on right
+                  format_left   "#[bg=#313244,fg=#cdd6f4] {mode} #[bg=#313244,fg=#89B4FA,bold] #[bg=#89B4FA,fg=#1e1e2e,bold] #[bg=#1e1e2e,fg=#89B4FA] "
                   format_center "#[fg=#6C7086,bold]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  // Git branch: just the branch name in subtle purple text
-                  format_right  "#[fg=#cba6f7,bold]{command_git_branch} "
+                  // Git branch: rounded purple pill on left, subtle text on right
+                  format_right  "#[bg=#313244,fg=#cba6f7,bold] #[bg=#cba6f7,fg=#1e1e2e,bold] #[bg=#313244,fg=#cdd6f4] {command_git_branch} "
                   format_space  ""
 
                   // Mode indicators - simple text, displayed in the light blue pill from format_left
