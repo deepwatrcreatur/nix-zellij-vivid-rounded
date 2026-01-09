@@ -27,6 +27,10 @@ in {
 
         default_layout = "extended";
 
+        # Enable automatic copying to clipboard on text selection
+        copy_on_select = true;
+        copy_clipboard = "system";
+
         # Enable rounded corners for UI elements (tabs and pane frames)
         ui = {
           pane_frames = {
