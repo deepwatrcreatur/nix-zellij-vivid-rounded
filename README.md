@@ -1,0 +1,124 @@
+# nix-zellij-vivid-rounded
+
+A highly customized [Zellij](https://zellij.dev/) configuration for NixOS/home-manager featuring vivid colors, rounded tab indicators, and thoughtfully remapped keybindings.
+
+## Features
+
+### Visual Design
+- **Vivid color palette**: Bright, saturated Catppuccin Mocha theme with:
+  - Light green active tabs (`#a6e3a1`)
+  - Light blue status bars (`#89B4FA`)
+  - Vibrant accent colors across all modes (orange, purple, cyan, yellow)
+- **Rounded tab indicators**: Pill-shaped active tabs with smooth visual separation
+- **Custom layout**: Top status bar showing session name and tabs, bottom guide bar with keybinding reminders
+- **Git branch display**: Shows current branch in bottom right
+
+### Keybindings - Designed for Terminal Tool Compatibility
+All Zellij control keybindings use **Ctrl+Alt** modifier instead of raw Ctrl to avoid conflicts with TUI applications like coding agents, text editors, and interactive CLI tools.
+
+#### Tab Management (Ctrl+Alt)
+- `Ctrl+Alt+t` - Enter tab mode
+- `Ctrl+Alt+c` - Create new tab
+- `Ctrl+Alt+x` - Close current tab
+- `Ctrl+Alt+[` / `Ctrl+Alt+]` - Previous/next tab
+- `Ctrl+Alt+1-9` - Go to specific tab
+
+#### Pane Management (Ctrl+Alt)
+- `Ctrl+Alt+p` - Enter pane mode
+- `Ctrl+Alt+s` - Split vertically (down)
+- `Ctrl+Alt+v` - Split horizontally (right)
+- `Ctrl+Alt+h/j/k/l` - Move focus left/down/up/right (vim-style)
+
+#### Other Controls (Ctrl+Alt)
+- `Ctrl+Alt+f` / `Ctrl+Alt+z` - Toggle fullscreen
+- `Ctrl+Alt+q` - Quit Zellij
+
+#### Modal Commands (vim-style)
+Once in tab/pane mode, use vim keys for navigation:
+- `h/l` - Previous/next tab (in tab mode)
+- `h/j/k/l` - Navigation (in pane mode)
+- `c` / `x` - Create/close tab or pane
+- `Esc` - Return to normal mode
+
+## Installation
+
+### With home-manager
+Add to your `flake.nix`:
+
+```nix
+{
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    zellij-vivid-rounded.url = "github:deepwatrcreatur/nix-zellij-vivid-rounded";
+  };
+
+  outputs = { home-manager, zellij-vivid-rounded, ... }@inputs:
+    {
+      homeConfigurations.yourusername = home-manager.lib.homeManagerConfiguration {
+        modules = [
+          zellij-vivid-rounded.homeManagerModules.default
+          # ... other modules
+        ];
+      };
+    };
+}
+```
+
+Then enable in your home-manager configuration:
+
+```nix
+programs.zellij-vivid-rounded.enable = true;
+```
+
+## Why Ctrl+Alt for Keybindings?
+
+Standard Zellij uses raw Ctrl keybindings (Ctrl+p, Ctrl+t, etc.) which conflict with interactive terminal tools like:
+- Claude Code and other coding agents (Ctrl+p for command palettes)
+- Editors (Ctrl+s for save, Ctrl+t for new tab)
+- TUI applications (vim, emacs, htop, etc.)
+
+By using **Ctrl+Alt** instead, we free up raw Ctrl entirely for these applications while maintaining intuitive zellij control.
+
+## Customization
+
+The module respects home-manager conventions. You can:
+- Override the theme by modifying `config.programs.zellij.settings.themes`
+- Add additional keybindings via `config.programs.zellij.settings.keybinds`
+- Modify the layout by editing the KDL in `xdg.configFile."zellij/layouts/extended.kdl"`
+
+## Screenshot
+
+![Zellij with vivid rounded tabs](./screenshot.png)
+
+The screenshot shows:
+- Light blue (`#89B4FA`) top and bottom bars
+- Light green (`#a6e3a1`) active tab highlight
+- Vim-style keybinding hints in the status bar
+- Multiple tabs with smooth visual separation
+
+## Integration with Your Multi-Host Setup
+
+Use in your unified-nix-configuration:
+
+```nix
+{
+  inputs = {
+    zellij-vivid-rounded.url = "github:deepwatrcreatur/nix-zellij-vivid-rounded";
+  };
+
+  outputs = { zellij-vivid-rounded, ... }@inputs:
+    {
+      homeConfigurations.hostname = home-manager.lib.homeManagerConfiguration {
+        modules = [
+          zellij-vivid-rounded.homeManagerModules.default
+          # ... your other modules
+        ];
+      };
+    };
+}
+```
+
+## License
+
+MIT

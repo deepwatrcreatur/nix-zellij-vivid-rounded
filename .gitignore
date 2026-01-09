@@ -1,0 +1,7 @@
+result
+result-*
+.dirlocals
+*.swp
+*.swo
+*~
+.DS_Store
