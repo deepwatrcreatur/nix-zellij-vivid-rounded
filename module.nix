@@ -27,6 +27,13 @@ in {
 
         default_layout = "extended";
 
+        # Enable rounded corners for UI elements (tabs and pane frames)
+        ui = {
+          pane_frames = {
+            rounded_corners = true;
+          };
+        };
+
         # Define Catppuccin Mocha theme locally to ensure it's available
         themes.catppuccin-mocha = {
           bg = "#585b70";
