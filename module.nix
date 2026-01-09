@@ -357,7 +357,7 @@ in
                   // Bottom bar with compact mode indicator and utility info
                   format_left   "{mode}"
                   format_center "#[fg=#89B4FA,bold]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  format_right  "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]󰊢#[bg=#1e1e2e,fg=#737c8a] {command_pwd}"
+                  format_right  "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]💾#[bg=#1e1e2e,fg=#737c8a] {command_memory}"
                   format_space  ""
 
                   // Compact vivid pills with subtle mode text
@@ -369,11 +369,11 @@ in
                   mode_scroll  "#[fg=#fab387,bold]#[bg=#fab387,fg=#1e1e2e,bold]S#[bg=#1e1e2e,fg=#737c8a]CROLL"
                   mode_session "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]S#[bg=#1e1e2e,fg=#737c8a]ESSION"
 
-                  // Show current working directory in bottom right
-                  command_pwd_command     "pwd | sed 's|$HOME|~|'"
-                  command_pwd_format      "{stdout}"
-                  command_pwd_interval    "1"
-                  command_pwd_rendermode  "static"
+                  // Show memory usage in bottom right (more reliable than git branch)
+                  command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \\$7/\\$2*100 \\\"% used\\\"}\" | head -c 10'"
+                  command_memory_format      "{stdout}"
+                  command_memory_interval    "5"
+                  command_memory_rendermode  "static"
               }
           }
       }
