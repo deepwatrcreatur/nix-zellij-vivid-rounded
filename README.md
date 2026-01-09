@@ -13,6 +13,10 @@ A highly customized [Zellij](https://zellij.dev/) configuration for NixOS/home-m
 - **Custom layout**: Top status bar showing session name and tabs, bottom guide bar with keybinding reminders
 - **Git branch display**: Shows current branch in bottom right
 
+### Clipboard & Text Selection
+- **Automatic copy-to-clipboard**: Text selection automatically copies to system clipboard
+- Works locally and over SSH (uses system clipboard backend)
+
 ### Keybindings - Designed for Terminal Tool Compatibility
 All Zellij control keybindings use **Ctrl+Alt** modifier instead of raw Ctrl to avoid conflicts with TUI applications like coding agents, text editors, and interactive CLI tools.
 
@@ -25,19 +29,32 @@ All Zellij control keybindings use **Ctrl+Alt** modifier instead of raw Ctrl to 
 
 #### Pane Management (Ctrl+Alt)
 - `Ctrl+Alt+p` - Enter pane mode
-- `Ctrl+Alt+s` - Split vertically (down)
-- `Ctrl+Alt+v` - Split horizontally (right)
+- `Ctrl+Alt+s` - Split down (new pane below)
+- `Ctrl+Alt+v` - Split right (new pane to the right)
 - `Ctrl+Alt+h/j/k/l` - Move focus left/down/up/right (vim-style)
 
-#### Other Controls (Ctrl+Alt)
-- `Ctrl+Alt+f` / `Ctrl+Alt+z` - Toggle fullscreen
+#### Pane Focus & Navigation (Ctrl+Alt)
+- `Ctrl+Alt+f` / `Ctrl+Alt+z` - Toggle focused pane fullscreen (maximizes current pane)
 - `Ctrl+Alt+q` - Quit Zellij
 
 #### Modal Commands (vim-style)
-Once in tab/pane mode, use vim keys for navigation:
-- `h/l` - Previous/next tab (in tab mode)
-- `h/j/k/l` - Navigation (in pane mode)
-- `c` / `x` - Create/close tab or pane
+Once you enter a mode with Ctrl+Alt+t (tab) or Ctrl+Alt+p (pane):
+
+**Tab Mode** (after Ctrl+Alt+t):
+- `h` / `l` - Previous/next tab
+- `1-9` - Go to specific tab
+- `c` - Create new tab
+- `x` - Close current tab
+- `r` - Rename tab
+- `s` - Enter session mode
+- `Esc` - Return to normal mode
+
+**Pane Mode** (after Ctrl+Alt+p):
+- `h/j/k/l` - Move focus left/down/up/right
+- `p` - New pane to the left
+- `n` - New pane below
+- `x` - Close focused pane
+- `f` / `z` - Toggle pane fullscreen
 - `Esc` - Return to normal mode
 
 ## Installation
@@ -79,6 +96,16 @@ Standard Zellij uses raw Ctrl keybindings (Ctrl+p, Ctrl+t, etc.) which conflict 
 - TUI applications (vim, emacs, htop, etc.)
 
 By using **Ctrl+Alt** instead, we free up raw Ctrl entirely for these applications while maintaining intuitive zellij control.
+
+## About "Pane Fullscreen"
+
+The `[f]ull` hint in the bottom status bar refers to **pane focus fullscreen**, not terminal fullscreen:
+- `Ctrl+Alt+f` or `Ctrl+Alt+z` maximizes the currently focused pane to fill the window
+- This hides other panes temporarily for a focused editing session
+- Press again to restore the pane layout
+- When in pane mode (`Ctrl+Alt+p`), you can also use `f` or `z` to toggle
+
+This is different from traditional terminal fullscreen (F11) which would maximize the Zellij window itself.
 
 ## Customization
 
