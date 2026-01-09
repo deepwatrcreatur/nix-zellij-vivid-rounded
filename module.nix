@@ -188,16 +188,17 @@ in {
               plugin location="file:${zjstatus-wasm}" {
                   // Standard vivid bar at the top with light blue background and session/tabs info
                   format_left   "#[bg=#89B4FA,fg=#1e1e2e,bold]  {session} #[bg=#1e1e2e,fg=#89B4FA] {tabs}"
-                  format_right  "#[bg=#89B4FA,fg=#1e1e2e,bold]  {command_os_symbol} {command_user_host} #[fg=#a6e3a1,bold]{command_memory}  #[bg=default]"
+                  format_right  "#[bg=#1e1e2e,fg=#89B4FA,bold] #[bg=#89B4FA,fg=#1e1e2e,bold]  {command_os_symbol} {command_user_host} #[fg=#a6e3a1,bold]{command_memory}  #[bg=#1e1e2e,fg=#89B4FA] "
+
                   format_space  ""
 
                   border_enabled  "false"
 
-                  // Pill-shaped tabs - create rounded effect with spacing and background
-                  // Inactive tabs: gray text on dark gray pill
-                  tab_normal   "#[bg=#313244,fg=#6C7086]  {index} {name}  #[bg=default]"
-                  // Active tabs: white text on bright green pill - extended padding creates roundness
-                  tab_active   "#[bg=#a6e3a1,fg=#1e1e2e,bold]  {index} {name}  #[bg=default]"
+                  // Pill-shaped tabs with background color blocks
+                  // Inactive tabs: gray text, no background fill to stand out less
+                  tab_normal   "#[fg=#6C7086] {index} {name} "
+                  // Active tabs: white text on bright green with dark "rounded caps" on sides for pill effect
+                  tab_active   "#[bg=#313244,fg=#a6e3a1,bold] #[bg=#a6e3a1,fg=#1e1e2e,bold]{index} {name}#[bg=#1e1e2e,fg=#a6e3a1] "
 
                   command_os_symbol_command     "uname -s | sed 's/Linux/󰌽/; s/Darwin/󰀵/; s/NixOS/󱄅/'"
                   command_os_symbol_format      "{stdout}"
@@ -221,7 +222,7 @@ in {
                   // Vivid Guide/Status bar at the bottom - text only, no backgrounds on hints
                   format_left   "{mode}"
                   format_center "#[fg=#89B4FA,bold]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  format_right  "#[fg=#89B4FA,bold]{command_git_branch}"
+                  format_right  "#[bg=#1e1e2e,fg=#cba6f7,bold] #[bg=#cba6f7,fg=#1e1e2e,bold]{command_git_branch}#[bg=#1e1e2e,fg=#cba6f7] "
                   format_space  ""
 
                   mode_normal  "#[bg=#89B4FA,fg=#1e1e2e,bold] NORMAL #[bg=#1e1e2e,fg=#89B4FA]"
