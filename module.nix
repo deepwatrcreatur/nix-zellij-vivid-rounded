@@ -335,14 +335,14 @@ in
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
                   // Top bar with subtle highlighted boxes and corner accents
-                  format_left   "#[bg=#2a2b3a,fg=#737c8a]  {session} #[fg=#89B4FA]#[reset]"
-                  format_right  "#[reset]#[bg=#2a2b3a,fg=#f9e2af]#[fg=#89B4FA] #[fg=#f9e2af]󰃭 {command_user_host}#[reset]"
-                  format_space  ""
+                  format_left   "#[bg=#2a2b3a,fg=#737c8a] {session} #[fg=#89B4FA]◐#[reset]"
+                  format_right  "#[bg=#2a2b3a,fg=#89B4FA]◑#[fg=#f9e2af] 󰃭 {command_user_host} #[reset]"
+                  format_space  "#[bg=#2a2b3a]"
 
                   border_enabled  "false"
 
                   // Subtle highlighted boxes with corner accents only
-                  tab_normal   "#[fg=#6C7086] {index} {name}"
+                  tab_normal   "#[bg=#2a2b3a,fg=#6C7086] {index} {name} #[reset]"
                   tab_active   "#[bg=#2a2b3a,fg=#a6e3a1]  {index} {name} #[fg=#a6e3a1]"
 
                   command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
@@ -356,9 +356,9 @@ in
               plugin location="file:${zjstatus-wasm}" {
                   // Bottom bar with subtle mode boxes and corner accents
                   format_left   "{mode}"
-                  format_center "#[fg=#6C7086]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  format_right  "#[reset]#[bg=#2a2b3a,fg=#737c8a]#[fg=#89B4FA] #[fg=#737c8a]󰍛 {command_memory}#[reset]"
-                  format_space  ""
+                  format_center "#[bg=#2a2b3a,fg=#6C7086]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit#[reset]"
+                  format_right  "#[bg=#2a2b3a,fg=#89B4FA]◑#[fg=#737c8a] 󰍛 {command_memory} #[reset]"
+                  format_space  "#[bg=#2a2b3a]"
 
                   // Subtle mode boxes with corner accents on appropriate sides
                   mode_normal  "#[bg=#2a2b3a,fg=#737c8a]  NORMAL #[fg=#89B4FA]#[reset]"
