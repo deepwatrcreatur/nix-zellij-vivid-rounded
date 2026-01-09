@@ -334,16 +334,16 @@ in
       layout {
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Top bar with floating pill aesthetic
-                  format_left   "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]   {session}  #[bg=#1e1e2e,fg=#89B4FA] {tabs}"
-                  format_right  "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]  󰃭 {command_user_host}  #[fg=#89B4FA,bg=#181825]"
+                  // Top bar with compact pill indicators and subtle text
+                  format_left   "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]{session}#[bg=#1e1e2e] {tabs}"
+                  format_right  "#[fg=#f9e2af,bold]#[bg=#f9e2af,fg=#1e1e2e,bold]󰃭#[bg=#1e1e2e,fg=#737c8a] {command_user_host}"
                   format_space  ""
 
                   border_enabled  "false"
 
-                  // Complete pill shapes with double-space padding for "fat pills"
-                  tab_normal   "#[fg=#6C7086] {index} {name} "
-                  tab_active   "#[fg=#a6e3a1,bold]#[bg=#a6e3a1,fg=#1e1e2e,bold]  {index} {name}  #[bg=#1e1e2e,fg=#a6e3a1]"
+                  // Compact tabs with vivid pill for active, minimal for inactive
+                  tab_normal   "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]{index}#[bg=#1e1e2e,fg=#737c8a] {name}"
+                  tab_active   "#[fg=#a6e3a1,bold]#[bg=#a6e3a1,fg=#1e1e2e,bold]{index}#[bg=#1e1e2e,fg=#737c8a] {name}"
 
                   command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
                   command_user_host_format      "{stdout}"
@@ -354,26 +354,26 @@ in
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Bottom bar with complete pill shapes and improved git detection
+                  // Bottom bar with compact mode indicator and utility info
                   format_left   "{mode}"
                   format_center "#[fg=#89B4FA,bold]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  format_right  "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]   {command_git_branch}  #[fg=#cba6f7,bg=#181825]"
+                  format_right  "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]󰊢#[bg=#1e1e2e,fg=#737c8a] {command_pwd}"
                   format_space  ""
 
-                  // Complete pill shapes for all modes with leading separators
-                  mode_normal  "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]  NORMAL  #[bg=#1e1e2e,fg=#89B4FA]"
-                  mode_locked  "#[fg=#f38ba8,bold]#[bg=#f38ba8,fg=#1e1e2e,bold]  LOCKED  #[bg=#1e1e2e,fg=#f38ba8]"
-                  mode_resize  "#[fg=#f9e2af,bold]#[bg=#f9e2af,fg=#1e1e2e,bold]  RESIZE  #[bg=#1e1e2e,fg=#f9e2af]"
-                  mode_pane    "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]  PANE  #[bg=#1e1e2e,fg=#cba6f7]"
-                  mode_tab     "#[fg=#a6e3a1,bold]#[bg=#a6e3a1,fg=#1e1e2e,bold]  TAB  #[bg=#1e1e2e,fg=#a6e3a1]"
-                  mode_scroll  "#[fg=#fab387,bold]#[bg=#fab387,fg=#1e1e2e,bold]  SCROLL  #[bg=#1e1e2e,fg=#fab387]"
-                  mode_session "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]  SESSION  #[bg=#1e1e2e,fg=#cba6f7]"
+                  // Compact vivid pills with subtle mode text
+                  mode_normal  "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]N#[bg=#1e1e2e,fg=#737c8a]ORMAL"
+                  mode_locked  "#[fg=#f38ba8,bold]#[bg=#f38ba8,fg=#1e1e2e,bold]L#[bg=#1e1e2e,fg=#737c8a]OCKED"
+                  mode_resize  "#[fg=#f9e2af,bold]#[bg=#f9e2af,fg=#1e1e2e,bold]R#[bg=#1e1e2e,fg=#737c8a]ESIZE"
+                  mode_pane    "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]P#[bg=#1e1e2e,fg=#737c8a]ANE"
+                  mode_tab     "#[fg=#a6e3a1,bold]#[bg=#a6e3a1,fg=#1e1e2e,bold]T#[bg=#1e1e2e,fg=#737c8a]AB"
+                  mode_scroll  "#[fg=#fab387,bold]#[bg=#fab387,fg=#1e1e2e,bold]S#[bg=#1e1e2e,fg=#737c8a]CROLL"
+                  mode_session "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]S#[bg=#1e1e2e,fg=#737c8a]ESSION"
 
-                  // Improved git branch detection with fallback and better error handling
-                  command_git_branch_command     "bash -c 'if git rev-parse --git-dir >/dev/null 2>&1; then git rev-parse --abbrev-ref HEAD 2>/dev/null || echo \"detached\"; else echo \"no-repo\"; fi'"
-                  command_git_branch_format      "{stdout}"
-                  command_git_branch_interval    "5"
-                  command_git_branch_rendermode  "static"
+                  // Show current working directory in bottom right
+                  command_pwd_command     "pwd | sed 's|$HOME|~|'"
+                  command_pwd_format      "{stdout}"
+                  command_pwd_interval    "1"
+                  command_pwd_rendermode  "static"
               }
           }
       }
