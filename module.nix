@@ -112,8 +112,6 @@ in {
             "bind \"j\"" = { MoveFocus = "Down"; };
             "bind \"k\"" = { MoveFocus = "Up"; };
             "bind \"l\"" = { MoveFocus = "Right"; };
-            "bind \"s\"" = { NewPane = "Down"; };
-            "bind \"v\"" = { NewPane = "Right"; };
             "bind \"p\"" = { NewPane = "Left"; };
             "bind \"n\"" = { NewPane = "Down"; };
             "bind \"x\"" = { CloseFocus = {}; };
