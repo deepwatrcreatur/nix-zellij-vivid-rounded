@@ -187,7 +187,7 @@ in {
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
                   // Standard vivid bar at the top with light blue background and session/tabs info
-                  format_left   "#[bg=#89B4FA,fg=#1e1e2e,bold]  {session} #[bg=#1e1e2e,fg=#89B4FA] {tabs}"
+                  format_left   "#[bg=#89B4FA,fg=#1e1e2e,bold]  🖥 {session} #[bg=#1e1e2e,fg=#89B4FA] {tabs}"
                   format_right  "#[bg=#1e1e2e,fg=#89B4FA,bold] #[bg=#89B4FA,fg=#1e1e2e,bold]  {command_os_symbol} {command_user_host} #[fg=#a6e3a1,bold]{command_memory}  #[bg=#1e1e2e,fg=#89B4FA] "
 
                   format_space  ""
