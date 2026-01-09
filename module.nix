@@ -18,48 +18,6 @@ in
 {
   options.programs.zellij-vivid-rounded = {
     enable = mkEnableOption "Zellij with vivid colors, rounded tabs, and Ctrl-Alt keybindings";
-
-    accentColor = mkOption {
-      type = types.str;
-      default = "#89B4FA";
-      description = "Primary accent color for UI elements (hex color)";
-    };
-
-    accentColor2 = mkOption {
-      type = types.str;
-      default = "#89dceb";
-      description = "Secondary accent color for UI elements (hex color)";
-    };
-
-    accentColor3 = mkOption {
-      type = types.str;
-      default = "#cba6f7";
-      description = "Tertiary accent color for UI elements (hex color)";
-    };
-
-    boxBackground = mkOption {
-      type = types.str;
-      default = "#313244";
-      description = "Background color for highlighted text boxes (hex color)";
-    };
-
-    modeBackground = mkOption {
-      type = types.str;
-      default = "#313244";
-      description = "Background color for mode indicator boxes (hex color)";
-    };
-
-    barBackground = mkOption {
-      type = types.str;
-      default = "#000000";
-      description = "Background color for top and bottom bars (hex color). Use black for vivid accent contrast, or set to match your terminal background.";
-    };
-
-    subtleHighlight = mkOption {
-      type = types.str;
-      default = "#6C7086";
-      description = "Color for subtle left-side highlights (hex color)";
-    };
   };
 
   config = mkIf cfg.enable {
@@ -371,23 +329,21 @@ in
       };
     };
 
-    # Define an extended layout with vivid rounded accents and subtle highlights
+    # Define an extended layout with rounded corners and vivid colors
     xdg.configFile."zellij/layouts/extended.kdl".text = ''
       layout {
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Top bar with black background for contrast with vivid accents
-                  format_left   "#[bg=${cfg.barBackground},fg=${cfg.subtleHighlight}] {session} #[fg=${cfg.subtleHighlight}]{tabs}"
-                  format_right  "#[fg=${cfg.accentColor2},bg=${cfg.barBackground}] {command_user_host} "
+                  // Top bar with subtle highlighted boxes and corner accents
+                  format_left   "#[bg=#2a2b3a,fg=#737c8a]  {session} #[fg=#89B4FA]#[reset]"
+                  format_right  "#[reset]#[bg=#2a2b3a,fg=#f9e2af]#[fg=#89B4FA] #[fg=#f9e2af]󰃭 {command_user_host}#[reset]"
                   format_space  ""
 
                   border_enabled  "false"
 
-                  // Tab styling: subtle left (index number), vivid right with rounded corner effect
-                  // Inactive tabs with subtle coloring
-                  tab_normal   "#[bg=${cfg.barBackground},fg=${cfg.subtleHighlight}] {index} {name} "
-                  // Active tabs: subtle left with index, then vivid color on right (rounded corner effect)
-                  tab_active   "#[bg=${cfg.barBackground},fg=${cfg.subtleHighlight}]{index}#[fg=#a6e3a1,bg=${cfg.barBackground}]#[fg=#a6e3a1] {name} "
+                  // Subtle highlighted boxes with corner accents only
+                  tab_normal   "#[fg=#6C7086] {index} {name}"
+                  tab_active   "#[bg=#2a2b3a,fg=#a6e3a1]  {index} {name} #[fg=#a6e3a1]"
 
                   command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
                   command_user_host_format      "{stdout}"
@@ -398,23 +354,23 @@ in
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Bottom bar with black background and subtle/vivid indicators
+                  // Bottom bar with subtle mode boxes and corner accents
                   format_left   "{mode}"
-                  format_center "#[fg=${cfg.subtleHighlight},bg=${cfg.barBackground}]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  format_right  "#[bg=${cfg.barBackground},fg=${cfg.subtleHighlight}]{command_memory} "
+                  format_center "#[fg=#6C7086]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
+                  format_right  "#[reset]#[bg=#2a2b3a,fg=#737c8a]#[fg=#89B4FA] #[fg=#737c8a]󰍛 {command_memory}#[reset]"
                   format_space  ""
 
-                  // Mode indicators with subtle left side, vivid right side for rounded corner effect
-                  mode_normal  "#[bg=${cfg.barBackground},fg=${cfg.subtleHighlight}] #[fg=${cfg.accentColor},bg=${cfg.barBackground}]NORMAL "
-                  mode_locked  "#[bg=${cfg.barBackground},fg=${cfg.subtleHighlight}] #[fg=#f38ba8,bg=${cfg.barBackground}]LOCKED "
-                  mode_resize  "#[bg=${cfg.barBackground},fg=${cfg.subtleHighlight}] #[fg=#f9e2af,bg=${cfg.barBackground}]RESIZE "
-                  mode_pane    "#[bg=${cfg.barBackground},fg=${cfg.subtleHighlight}] #[fg=${cfg.accentColor3},bg=${cfg.barBackground}]PANE "
-                  mode_tab     "#[bg=${cfg.barBackground},fg=${cfg.subtleHighlight}] #[fg=#a6e3a1,bg=${cfg.barBackground}]TAB "
-                  mode_scroll  "#[bg=${cfg.barBackground},fg=${cfg.subtleHighlight}] #[fg=#fab387,bg=${cfg.barBackground}]SCROLL "
-                  mode_session "#[bg=${cfg.barBackground},fg=${cfg.subtleHighlight}] #[fg=${cfg.accentColor3},bg=${cfg.barBackground}]SESSION "
+                  // Subtle mode boxes with corner accents on appropriate sides
+                  mode_normal  "#[bg=#2a2b3a,fg=#737c8a]  NORMAL #[fg=#89B4FA]#[reset]"
+                  mode_locked  "#[bg=#2a2b3a,fg=#737c8a]  LOCKED #[fg=#f38ba8]#[reset]"
+                  mode_resize  "#[bg=#2a2b3a,fg=#737c8a]  RESIZE #[fg=#f9e2af]#[reset]"
+                  mode_pane    "#[bg=#2a2b3a,fg=#737c8a]  PANE #[fg=#cba6f7]#[reset]"
+                  mode_tab     "#[bg=#2a2b3a,fg=#737c8a]  TAB #[fg=#a6e3a1]#[reset]"
+                  mode_scroll  "#[bg=#2a2b3a,fg=#737c8a]  SCROLL #[fg=#fab387]#[reset]"
+                  mode_session "#[bg=#2a2b3a,fg=#737c8a]  SESSION #[fg=#cba6f7]#[reset]"
 
-                  // Show memory usage in bottom right (GB/GB format)
-                  command_memory_command     "bash -c 'free -h | grep Mem | awk \"{gsub(/Gi/, \\\"GB\\\", \\$1); gsub(/Mi/, \\\"MB\\\", \\$1); print \\$3 \\\"/\\\" \\$2}\"'"
+                  // Show memory usage in bottom right
+                  command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \\$3 \\\"/\\\" \\$2 \\\" GB\\\"}\"'"
                   command_memory_format      "{stdout}"
                   command_memory_interval    "5"
                   command_memory_rendermode  "static"
