@@ -186,22 +186,22 @@ in {
       layout {
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Top bar: rounded pill accents on terminal icon and OS/user info
-                  // Terminal icon in green pill with rounded effect (dark caps + bright center)
-                  format_left   "#[bg=#313244,fg=#a6e3a1,bold] #[bg=#a6e3a1,fg=#1e1e2e,bold]🖥 {session}#[bg=#1e1e2e,fg=#a6e3a1] #[fg=#6C7086]{tabs}"
-                  // Top right: OS/distro icon in green pill, then user@host and memory (muted)
-                  format_right  "#[bg=#313244,fg=#a6e3a1,bold] #[bg=#a6e3a1,fg=#1e1e2e,bold]{command_os_symbol} {command_user_host}#[bg=#1e1e2e,fg=#a6e3a1] #[fg=#a6e3a1]{command_memory}"
+                  // Top bar: vivid color ONLY on icon pills, text stays subtle
+                  // Terminal icon: small green pill, session name in subtle background after
+                  format_left   "#[bg=#313244,fg=#a6e3a1,bold] #[bg=#a6e3a1,fg=#1e1e2e,bold]🖥#[bg=#313244,fg=#cdd6f4] {session} #[fg=#6C7086]{tabs}"
+                  // OS icon: small green pill, user@host and memory in subtle text after
+                  format_right  "#[bg=#313244,fg=#a6e3a1,bold] #[bg=#a6e3a1,fg=#1e1e2e,bold]{command_os_symbol}#[bg=#1e1e2e,fg=#cdd6f4] {command_user_host} #[fg=#9ca3af]{command_memory}"
 
                   format_space  ""
 
                   border_enabled  "false"
 
-                  // Refined tab styling with rounded pill on active tab
+                  // Refined tab styling: vivid color ONLY on the number pill
                   // Inactive tabs: gray text, subtle and muted
                   tab_normal   "#[fg=#6C7086] {index} #[fg=#6C7086]{name} "
-                  // Active tabs: number in rounded green pill with brightness increase, name muted
-                  // Dark caps (313244) + bright green center (a6e3a1) + dark caps + muted name
-                  tab_active   "#[bg=#313244,fg=#a6e3a1,bold] #[bg=#a6e3a1,fg=#1e1e2e,bold]{index}#[bg=#1e1e2e,fg=#a6e3a1] #[fg=#cdd6f4]{name} "
+                  // Active tabs: number in small green pill, name in subtle background
+                  // Dark caps + bright green pill on just the index + reset to subtle background + name
+                  tab_active   "#[bg=#313244,fg=#a6e3a1,bold] #[bg=#a6e3a1,fg=#1e1e2e,bold]{index}#[bg=#313244,fg=#cdd6f4] {name} "
 
                   command_os_symbol_command     "uname -s | sed 's/Linux/󰌽/; s/Darwin/󰀵/; s/NixOS/󱄅/'"
                   command_os_symbol_format      "{stdout}"
@@ -222,12 +222,12 @@ in {
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Bottom bar: mode in light blue pill, hints muted in center, git branch in purple pill
-                  // Mode indicator: light blue rounded pill with subtle background
+                  // Bottom bar: mode in small light blue pill, hints muted, git branch subtle text
+                  // Mode indicator: light blue pill on mode text only
                   format_left   "#[bg=#313244,fg=#89B4FA,bold] #[bg=#89B4FA,fg=#1e1e2e,bold]{mode}#[bg=#1e1e2e,fg=#89B4FA] "
                   format_center "#[fg=#6C7086,bold]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  // Git branch: purple rounded pill, dark caps + bright center + dark caps
-                  format_right  "#[bg=#313244,fg=#cba6f7,bold] #[bg=#cba6f7,fg=#1e1e2e,bold]{command_git_branch}#[bg=#1e1e2e,fg=#cba6f7] "
+                  // Git branch: just the branch name in subtle purple text
+                  format_right  "#[fg=#cba6f7,bold]{command_git_branch} "
                   format_space  ""
 
                   // Mode indicators - simple text, displayed in the light blue pill from format_left
