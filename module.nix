@@ -186,11 +186,11 @@ in {
       layout {
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Top bar: different colors per icon - green for terminal, yellow for OS
-                  // Terminal icon: small green pill, session name in subtle background after
-                  format_left   "#[bg=#313244,fg=#a6e3a1,bold] #[bg=#a6e3a1,fg=#1e1e2e,bold]🖥#[bg=#313244,fg=#cdd6f4] {session} #[fg=#6C7086]{tabs}"
-                  // OS icon: small yellow pill, user@host and memory in subtle text after
-                  format_right  "#[bg=#313244,fg=#f9e2af,bold] #[bg=#f9e2af,fg=#1e1e2e,bold]{command_os_symbol}#[bg=#1e1e2e,fg=#cdd6f4] {command_user_host} #[fg=#9ca3af]{command_memory}"
+                  // Top bar: rounded icons with accent colors
+                  // Terminal icon: green rounded pill with half-circle edges
+                  format_left   "#[bg=#313244,fg=#a6e3a1,bold]◐#[bg=#a6e3a1,fg=#1e1e2e,bold]🖥#[bg=#313244,fg=#cdd6f4]◑ {session} #[fg=#6C7086]{tabs}"
+                  // OS icon: yellow rounded pill with half-circle edges
+                  format_right  "#[bg=#313244,fg=#f9e2af,bold]◐#[bg=#f9e2af,fg=#1e1e2e,bold]{command_os_symbol}#[bg=#313244,fg=#cdd6f4]◑ {command_user_host} #[fg=#9ca3af]{command_memory}"
 
                   format_space  ""
 
@@ -222,12 +222,12 @@ in {
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Bottom bar: asymmetrical accents - pill right of mode, pill left of branch
-                  // Mode indicator: subtle text on left, rounded light blue pill on right
-                  format_left   "#[bg=#313244,fg=#cdd6f4] {mode} #[bg=#313244,fg=#89B4FA,bold] #[bg=#89B4FA,fg=#1e1e2e,bold] #[bg=#1e1e2e,fg=#89B4FA] "
+                  // Bottom bar: asymmetrical rounded accents - pill right of mode, pill left of branch
+                  // Mode indicator: subtle text on left, light blue rounded pill on right
+                  format_left   "#[bg=#313244,fg=#cdd6f4] {mode} #[bg=#313244,fg=#89B4FA,bold]◐#[bg=#89B4FA,fg=#1e1e2e,bold]◑#[bg=#1e1e2e,fg=#89B4FA] "
                   format_center "#[fg=#6C7086,bold]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  // Git branch: rounded purple pill on left, subtle text on right
-                  format_right  "#[bg=#313244,fg=#cba6f7,bold] #[bg=#cba6f7,fg=#1e1e2e,bold] #[bg=#313244,fg=#cdd6f4] {command_git_branch} "
+                  // Git branch: purple rounded pill on left, subtle text on right
+                  format_right  "#[bg=#313244,fg=#cba6f7,bold]◐#[bg=#cba6f7,fg=#1e1e2e,bold]󰊢#[bg=#313244,fg=#cdd6f4]◑ {command_git_branch} "
                   format_space  ""
 
                   // Mode indicators - simple text, displayed in the light blue pill from format_left
