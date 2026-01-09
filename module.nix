@@ -334,16 +334,16 @@ in
       layout {
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Top bar with rounded pill indicators and subtle text
-                  format_left   "#[bg=#1e1e2e,fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold] {session} #[bg=#1e1e2e,fg=#89B4FA]◑#[fg=#737c8a] {tabs}"
-                  format_right  "#[fg=#f9e2af,bold]#[bg=#1e1e2e,fg=#f9e2af]◐#[bg=#f9e2af,fg=#1e1e2e,bold] 󰃭 {command_user_host} #[bg=#1e1e2e,fg=#737c8a]"
+                  // Top bar with subtle highlighted boxes and corner accents
+                  format_left   "#[bg=#2a2b3a,fg=#89B4FA]  {session} #[fg=#585b70]"
+                  format_right  "#[bg=#2a2b3a,fg=#89dceb]󰃭 {command_user_host} #[fg=#89dceb]"
                   format_space  ""
 
                   border_enabled  "false"
 
-                  // Rounded tabs with vivid pill for active, minimal for inactive
-                  tab_normal   "#[bg=#1e1e2e,fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]{index}#[bg=#1e1e2e,fg=#89B4FA]◑#[fg=#737c8a] {name}"
-                  tab_active   "#[bg=#1e1e2e,fg=#a6e3a1,bold]#[bg=#a6e3a1,fg=#1e1e2e,bold]{index}#[bg=#1e1e2e,fg=#a6e3a1]◑#[fg=#737c8a] {name}"
+                  // Subtle highlighted boxes with corner accents only
+                  tab_normal   "#[fg=#6C7086] {index} {name}"
+                  tab_active   "#[bg=#2a2b3a,fg=#a6e3a1]  {index} {name} #[fg=#a6e3a1]"
 
                   command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
                   command_user_host_format      "{stdout}"
@@ -354,22 +354,22 @@ in
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Bottom bar with rounded mode indicator and utility info
+                  // Bottom bar with subtle mode boxes and corner accents
                   format_left   "{mode}"
-                  format_center "#[fg=#89B4FA,bold]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  format_right  "#[fg=#cba6f7,bold]#[bg=#1e1e2e,fg=#cba6f7]◐#[bg=#cba6f7,fg=#1e1e2e,bold] 󰍛 {command_memory} #[bg=#1e1e2e,fg=#737c8a]"
+                  format_center "#[fg=#6C7086]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
+                  format_right  "#[bg=#2a2b3a,fg=#cba6f7] 󰍛 {command_memory} #[fg=#cba6f7]"
                   format_space  ""
 
-                  // Rounded vivid pills with subtle mode text
-                  mode_normal  "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold] N#[bg=#1e1e2e,fg=#89B4FA]◑#[fg=#737c8a] ORMAL"
-                  mode_locked  "#[fg=#f38ba8,bold]#[bg=#f38ba8,fg=#1e1e2e,bold] L#[bg=#1e1e2e,fg=#f38ba8]◑#[fg=#737c8a] OCKED"
-                  mode_resize  "#[fg=#f9e2af,bold]#[bg=#f9e2af,fg=#1e1e2e,bold] R#[bg=#1e1e2e,fg=#f9e2af]◑#[fg=#737c8a] ESIZE"
-                  mode_pane    "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold] P#[bg=#1e1e2e,fg=#cba6f7]◑#[fg=#737c8a] ANE"
-                  mode_tab     "#[fg=#a6e3a1,bold]#[bg=#a6e3a1,fg=#1e1e2e,bold] T#[bg=#1e1e2e,fg=#a6e3a1]◑#[fg=#737c8a] AB"
-                  mode_scroll  "#[fg=#fab387,bold]#[bg=#fab387,fg=#1e1e2e,bold] S#[bg=#1e1e2e,fg=#fab387]◑#[fg=#737c8a] CROLL"
-                  mode_session "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold] S#[bg=#1e1e2e,fg=#cba6f7]◑#[fg=#737c8a] ESSION"
+                  // Subtle mode boxes with corner accents on appropriate sides
+                  mode_normal  "#[bg=#2a2b3a,fg=#89B4FA]  NORMAL  #[fg=#89B4FA]"
+                  mode_locked  "#[bg=#2a2b3a,fg=#f38ba8]  LOCKED  #[fg=#f38ba8]"
+                  mode_resize  "#[bg=#2a2b3a,fg=#f9e2af]  RESIZE  #[fg=#f9e2af]"
+                  mode_pane    "#[bg=#2a2b3a,fg=#cba6f7]  PANE  #[fg=#cba6f7]"
+                  mode_tab     "#[bg=#2a2b3a,fg=#a6e3a1]  TAB  #[fg=#a6e3a1]"
+                  mode_scroll  "#[bg=#2a2b3a,fg=#fab387]  SCROLL  #[fg=#cba6f7]"
+                  mode_session "#[bg=#2a2b3a,fg=#cba6f7]  SESSION  #[fg=#cba6f7]"
 
-                  // Show memory usage in bottom right (used GB / total GB with units)
+                  // Show memory usage in bottom right
                   command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \\$3 \\\"/\\\" \\$2 \\\" GB\\\"}\"'"
                   command_memory_format      "{stdout}"
                   command_memory_interval    "5"
