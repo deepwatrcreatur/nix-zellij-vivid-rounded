@@ -204,7 +204,7 @@ in {
                   command_os_symbol_interval    "60"
                   command_os_symbol_rendermode  "static"
 
-                  command_user_host_command     "echo $(whoami)@$(hostname)"
+                  command_user_host_command     "printf '%s@%s' \"$USER\" \"$(hostname)\""
                   command_user_host_format      "{stdout}"
                   command_user_host_interval    "60"
                   command_user_host_rendermode  "static"
