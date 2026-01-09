@@ -193,11 +193,11 @@ in {
 
                   border_enabled  "false"
 
-                  // Pill-shaped tabs with rounded edges
-                  // Inactive tabs: gray text with subtle background
-                  tab_normal   "#[fg=#6C7086,bg=#313244] {index} {name} #[bg=default]"
-                  // Active tabs: bright green pill-shaped background with rounded visual
-                  tab_active   "#[bg=#a6e3a1,fg=#1e1e2e,bold] {index} {name} #[bg=default]"
+                  // Pill-shaped tabs - create rounded effect with spacing and background
+                  // Inactive tabs: gray text on dark gray pill
+                  tab_normal   "#[bg=#313244,fg=#6C7086]  {index} {name}  #[bg=default]"
+                  // Active tabs: white text on bright green pill - extended padding creates roundness
+                  tab_active   "#[bg=#a6e3a1,fg=#1e1e2e,bold]  {index} {name}  #[bg=default]"
 
                   command_os_symbol_command     "uname -s | sed 's/Linux/󰌽/; s/Darwin/󰀵/; s/NixOS/󱄅/'"
                   command_os_symbol_format      "{stdout}"
