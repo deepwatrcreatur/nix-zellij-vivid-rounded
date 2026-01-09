@@ -335,15 +335,15 @@ in
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
                   // Top bar with rounded pill indicators and subtle text
-                  format_left   "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]  {session}  #[bg=#1e1e2e,fg=#89B4FA] {tabs}"
-                  format_right  "#[fg=#f9e2af,bold]#[bg=#f9e2af,fg=#1e1e2e,bold]  󰃭 {command_user_host}  #[bg=#1e1e2e,fg=#f9e2af]"
+                  format_left   "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]◀ {session} ▶#[bg=#1e1e2e,fg=#737c8a] {tabs}"
+                  format_right  "#[fg=#f9e2af,bold]#[bg=#f9e2af,fg=#1e1e2e,bold]◀ 󰃭 {command_user_host} ▶#[bg=#1e1e2e,fg=#737c8a]"
                   format_space  ""
 
                   border_enabled  "false"
 
                   // Rounded tabs with vivid pill for active, minimal for inactive
-                  tab_normal   "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]  {index} {name}  #[bg=#1e1e2e,fg=#89B4FA]"
-                  tab_active   "#[fg=#a6e3a1,bold]#[bg=#a6e3a1,fg=#1e1e2e,bold]  {index} {name}  #[bg=#1e1e2e,fg=#a6e3a1]"
+                  tab_normal   "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]◀{index}▶#[bg=#1e1e2e,fg=#737c8a] {name}"
+                  tab_active   "#[fg=#a6e3a1,bold]#[bg=#a6e3a1,fg=#1e1e2e,bold]◀{index}▶#[bg=#1e1e2e,fg=#737c8a] {name}"
 
                   command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
                   command_user_host_format      "{stdout}"
@@ -357,20 +357,20 @@ in
                   // Bottom bar with rounded mode indicator and utility info
                   format_left   "{mode}"
                   format_center "#[fg=#89B4FA,bold]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  format_right  "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]  💾 {command_memory}  #[bg=#1e1e2e,fg=#cba6f7]"
+                  format_right  "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]◀ 󰍛 {command_memory} ▶#[bg=#1e1e2e,fg=#737c8a]"
                   format_space  ""
 
                   // Rounded vivid pills with subtle mode text
-                  mode_normal  "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]  NORMAL  #[bg=#1e1e2e,fg=#89B4FA]"
-                  mode_locked  "#[fg=#f38ba8,bold]#[bg=#f38ba8,fg=#1e1e2e,bold]  LOCKED  #[bg=#1e1e2e,fg=#f38ba8]"
-                  mode_resize  "#[fg=#f9e2af,bold]#[bg=#f9e2af,fg=#1e1e2e,bold]  RESIZE  #[bg=#1e1e2e,fg=#f9e2af]"
-                  mode_pane    "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]  PANE  #[bg=#1e1e2e,fg=#cba6f7]"
-                  mode_tab     "#[fg=#a6e3a1,bold]#[bg=#a6e3a1,fg=#1e1e2e,bold]  TAB  #[bg=#1e1e2e,fg=#a6e3a1]"
-                  mode_scroll  "#[fg=#fab387,bold]#[bg=#fab387,fg=#1e1e2e,bold]  SCROLL  #[bg=#1e1e2e,fg=#fab387]"
-                  mode_session "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]  SESSION  #[bg=#1e1e2e,fg=#cba6f7]"
+                  mode_normal  "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]◀ N▶#[bg=#1e1e2e,fg=#737c8a]ORMAL"
+                  mode_locked  "#[fg=#f38ba8,bold]#[bg=#f38ba8,fg=#1e1e2e,bold]◀ L▶#[bg=#1e1e2e,fg=#737c8a]OCKED"
+                  mode_resize  "#[fg=#f9e2af,bold]#[bg=#f9e2af,fg=#1e1e2e,bold]◀ R▶#[bg=#1e1e2e,fg=#737c8a]ESIZE"
+                  mode_pane    "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]◀ P▶#[bg=#1e1e2e,fg=#737c8a]ANE"
+                  mode_tab     "#[fg=#a6e3a1,bold]#[bg=#a6e3a1,fg=#1e1e2e,bold]◀ T▶#[bg=#1e1e2e,fg=#737c8a]AB"
+                  mode_scroll  "#[fg=#fab387,bold]#[bg=#fab387,fg=#1e1e2e,bold]◀ S▶#[bg=#1e1e2e,fg=#737c8a]CROLL"
+                  mode_session "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]◀ S▶#[bg=#1e1e2e,fg=#737c8a]ESSION"
 
-                  // Show memory usage in bottom right (used GB / total GB)
-                  command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \\$3 \\\"/\\\" \\$2}\"'"
+                  // Show memory usage in bottom right (used GB / total GB with units)
+                  command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \\$3 \\\"/\\\" \\$2 \\\" GB\\\"}\"'"
                   command_memory_format      "{stdout}"
                   command_memory_interval    "5"
                   command_memory_rendermode  "static"
