@@ -182,10 +182,10 @@ in {
 
                   border_enabled  "false"
 
-                  // Rounded pill-shaped tabs with vivid light green highlight on active tab
-                  // The rounded appearance comes from the background color creating a visual "pill" effect
-                  tab_normal   "#[fg=#6C7086]  {index}:{name}  #[fg=#6C7086]"
-                  tab_active   "#[bg=#a6e3a1,fg=#1e1e2e,bold] {index}:{name} #[bg=#1e1e2e,fg=#a6e3a1] "
+                  // Rounded tabs with vivid light green highlight on active tab
+                  // The rounded appearance comes from the dual-tone background effect
+                  tab_normal   "#[fg=#6C7086] {index} {name} "
+                  tab_active   "#[bg=#313244,fg=#a6e3a1,bold] #[bg=#a6e3a1,fg=#1e1e2e,bold]{index} {name}#[bg=#1e1e2e,fg=#a6e3a1] "
 
                   datetime        "{format}"
                   datetime_format "%H:%M"
@@ -195,9 +195,9 @@ in {
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Vivid Guide/Status bar at the bottom with Ctrl+Alt keybinding hints in rounded boxes
+                  // Vivid Guide/Status bar at the bottom with Ctrl+Alt hints
                   format_left   "{mode}"
-                  format_center "#[bg=#313244,fg=#89B4FA,bold]  Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit  #[bg=#1e1e2e,fg=#89B4FA]"
+                  format_center "#[fg=#89B4FA,bold]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
                   format_right  "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]  {command_git_branch} "
                   format_space  ""
 
