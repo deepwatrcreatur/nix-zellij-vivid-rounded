@@ -358,7 +358,7 @@ in
                   mode_pane    "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold] PANE #[fg=#cba6f7,bg=#181825]"
                   mode_tab     "#[fg=#a6e3a1,bg=#181825]#[fg=#181825,bg=#a6e3a1,bold] TAB #[fg=#a6e3a1,bg=#181825]"
                   mode_scroll  "#[fg=#fab387,bg=#181825]#[fg=#181825,bg=#fab387,bold] SCROLL #[fg=#fab387,bg=#181825]"
-                  mode_session "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold]SESSION #[fg=#cba6f7,bg=#181825]"
+                  mode_session "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold] SESSION #[fg=#cba6f7,bg=#181825]"
 
                   # Git branch
                   command_git_branch_command     "bash -c 'if git rev-parse --git-dir >/dev/null 2>&1; then git rev-parse --abbrev-ref HEAD 2>/dev/null || echo \"detached\"; else echo \"no-repo\"; fi'"
