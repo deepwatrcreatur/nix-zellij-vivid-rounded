@@ -334,16 +334,16 @@ in
       layout {
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Top bar with subtle highlighted boxes and corner accents
-                  format_left   "#[bg=#2a2b3a,fg=#89B4FA]  {session} #[reset]#[bg=#0f1017] {tabs} #[reset]"
-                  format_right  "#[reset]#[bg=#0f1017,fg=#89B4FA] #[reset]#[bg=#2a2b3a,fg=#89B4FA] 󰃭 {command_user_host} #[reset]"
-                  format_space  "#[bg=#0f1017]"
+                  // Top bar with rounded corner accents and icon highlights
+                  format_left   "#[bg=#89B4FA,fg=#181825]◐#[bg=#2a2b3a,fg=#89B4FA] {session} #[reset]#[bg=#1a1c24] {tabs} #[reset]"
+                  format_right  "#[reset]#[bg=#1a1c24,fg=#89B4FA]◑#[reset]#[bg=#89B4FA,fg=#181825] 󰃭 #[bg=#2a2b3a,fg=#89B4FA]{command_user_host} #[reset]"
+                  format_space  "#[bg=#1a1c24]"
 
                   border_enabled  "false"
 
-                  // Subtle highlighted boxes with corner accents only
-                  tab_normal   "#[bg=#0f1017,fg=#6C7086] {index} {name} #[reset]"
-                  tab_active   "#[bg=#0f1017,fg=#6C7086] {index}#[fg=#cba6f7] {name} #[reset]"
+                  // Tab styling with text box highlighting
+                  tab_normal   "#[bg=#1a1c24,fg=#888fa0] {index} {name} #[reset]"
+                  tab_active   "#[bg=#1a1c24,fg=#888fa0] {index}#[fg=#cba6f7] {name} #[reset]"
 
                   command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
                   command_user_host_format      "{stdout}"
@@ -354,11 +354,11 @@ in
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Bottom bar with subtle mode boxes and corner accents
+                  // Bottom bar with mode boxes and icon accents
                   format_left   "{mode}"
-                  format_center "#[bg=#0f1017,fg=#89B4FA]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit#[reset]"
-                  format_right  "#[reset]#[bg=#0f1017,fg=#89B4FA] #[reset]#[bg=#2a2b3a,fg=#89B4FA] 󰍛 {command_memory} #[reset]"
-                  format_space  "#[bg=#0f1017]"
+                  format_center "#[bg=#1a1c24,fg=#89B4FA]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit#[reset]"
+                  format_right  "#[reset]#[bg=#1a1c24,fg=#89B4FA]◑#[reset]#[bg=#89B4FA,fg=#181825] 󰍛 #[bg=#2a2b3a,fg=#89B4FA]{command_memory} #[reset]"
+                  format_space  "#[bg=#1a1c24]"
 
                   // Subtle mode boxes with corner accents on appropriate sides
                   mode_normal  "#[bg=#2a2b3a,fg=#89B4FA] NORMAL #[reset]"
