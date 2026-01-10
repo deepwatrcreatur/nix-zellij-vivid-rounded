@@ -334,16 +334,16 @@ in
       layout {
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Top bar with block accents: green left, purple/yellow right, subtle text
-                  format_left   "#[bg=#a6e3a1,fg=#181825]█#[bg=#2a2b3a,fg=#a6e3a1] {session} #[reset]#[bg=#1a1c24] {tabs} #[reset]"
-                  format_right  "#[reset]#[bg=#1a1c24,fg=#f9e2af]█#[reset]#[bg=#2a2b3a,fg=#f9e2af] 󰃭 {command_user_host} #[reset]"
+                  // Top bar with rounded corner accents: green left, light grey text, yellow right
+                  format_left   "#[bg=#a6e3a1,fg=#181825]#[bg=#2a2b3a,fg=#c5cbd2] {session} #[reset]#[bg=#1a1c24] {tabs} #[reset]"
+                  format_right  "#[reset]#[bg=#1a1c24,fg=#c5cbd2] 󰃭 {command_user_host}#[fg=#f9e2af]#[reset]"
                   format_space  "#[bg=#1a1c24]"
 
                   border_enabled  "false"
 
-                  // Tab styling: block accent on right, purple accent for active
-                  tab_normal   "#[bg=#1a1c24,fg=#9ca3af] {index} {name} #[fg=#cba6f7]█#[reset]"
-                  tab_active   "#[bg=#1a1c24,fg=#9ca3af] {index}#[fg=#cba6f7] {name}#[fg=#cba6f7]█#[reset]"
+                  // Tab styling: rounded corner on right for active tabs (purple)
+                  tab_normal   "#[bg=#1a1c24,fg=#c5cbd2] {index} {name} #[reset]"
+                  tab_active   "#[bg=#1a1c24,fg=#c5cbd2] {index} {name}#[fg=#cba6f7]#[reset]"
 
                   command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
                   command_user_host_format      "{stdout}"
@@ -354,10 +354,10 @@ in
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Bottom bar with block accents on right, mode indicators
+                  // Bottom bar with rounded corner accents, light grey text
                   format_left   "{mode}"
                   format_center "#[bg=#1a1c24,fg=#89B4FA]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit#[reset]"
-                  format_right  "#[reset]#[bg=#1a1c24,fg=#f9e2af]█#[reset]#[bg=#2a2b3a,fg=#f9e2af] 󰍛 {command_memory} #[reset]"
+                  format_right  "#[reset]#[bg=#1a1c24,fg=#c5cbd2] 󰍛 {command_memory}#[fg=#f9e2af]#[reset]"
                   format_space  "#[bg=#1a1c24]"
 
                   // Subtle mode boxes with corner accents on appropriate sides
