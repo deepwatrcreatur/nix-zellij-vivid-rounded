@@ -39,7 +39,7 @@
     mode_session "#[fg=#181825,bg=#cba6f7,bold] SESSION #[fg=#cba6f7,bg=#181825]"
 
     // Memory Usage
-    command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \$3 \\\"/\\\" \$2}\" '"
+    command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \\$3 \\\"/\\\" \\$2}\" '"
     command_memory_format      "{stdout}"
     command_memory_interval    "5"
     command_memory_rendermode  "static"
