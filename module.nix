@@ -332,53 +332,54 @@ in
 
     # Define an extended layout with rounded corners and vivid colors
     xdg.configFile."zellij/layouts/extended.kdl".text = ''
-      layout {
-          pane size=1 borderless=true {
-              plugin location="file:${zjstatus-wasm}" {
-                  # Top bar: "Bubble" style with "double pills" for indicators
-                  # Colors: Mantle (#181825) as bar bg, Surface0 (#313244) as module bg, Text (#cdd6f4)
-                  
-                  format_left   "#[fg=#89B4FA,bg=#181825]#[fg=#181825,bg=#89B4FA,bold]  #[fg=#89B4FA,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {session} #[fg=#313244,bg=#181825] {tabs}"
-                  format_right  "#[fg=#f9e2af,bg=#181825]#[fg=#181825,bg=#f9e2af,bold] 󰃭 #[fg=#f9e2af,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {datetime} #[fg=#313244,bg=#181825]"
-                  format_space  "#[bg=#181825]"
-
-                  border_enabled  "false"
-
-                  # Tabs: Vivid Green Pill for active, subtle for normal
-                  tab_normal   "#[fg=#6C7086,bg=#181825] {index} {name} "
-                  tab_active   "#[fg=#a6e3a1,bg=#181825]#[fg=#181825,bg=#a6e3a1,bold] {index} {name} #[fg=#a6e3a1,bg=#181825]"
-
-                  datetime        "{format}"
-                  datetime_format "%H:%M"
-                  datetime_timezone "Europe/Berlin"
-              }
-          }
-          pane
-          pane size=2 borderless=true {
-              plugin location="file:${zjstatus-wasm}" {
-                  # Bottom bar
-                  format_left   "{mode}"
-                  format_center "#[fg=#6C7086,bg=#181825]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  format_right  "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold]  #[fg=#cba6f7,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {command_git_branch} #[fg=#313244,bg=#181825]"
-                  format_space  "#[bg=#181825]"
-
-                  # Modes: Vivid pills with bold text
-                  mode_normal  "#[fg=#89B4FA,bg=#181825]#[fg=#181825,bg=#89B4FA,bold] NORMAL #[fg=#89B4FA,bg=#181825]"
-                  mode_locked  "#[fg=#f38ba8,bg=#181825]#[fg=#181825,bg=#f38ba8,bold] LOCKED #[fg=#f38ba8,bg=#181825]"
-                  mode_resize  "#[fg=#f9e2af,bg=#181825]#[fg=#181825,bg=#f9e2af,bold] RESIZE #[fg=#f9e2af,bg=#181825]"
-                  mode_pane    "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold] PANE #[fg=#cba6f7,bg=#181825]"
-                  mode_tab     "#[fg=#a6e3a1,bg=#181825]#[fg=#181825,bg=#a6e3a1,bold] TAB #[fg=#a6e3a1,bg=#181825]"
-                  mode_scroll  "#[fg=#fab387,bg=#181825]#[fg=#181825,bg=#fab387,bold] SCROLL #[fg=#fab387,bg=#181825]"
-                  mode_session "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold] SESSION #[fg=#cba6f7,bg=#181825]"
-
-                  # Git branch
-                  command_git_branch_command     "bash -c 'if git rev-parse --git-dir >/dev/null 2>&1; then git rev-parse --abbrev-ref HEAD 2>/dev/null || echo \"detached\"; else echo \"no-repo\"; fi'"
-                  command_git_branch_format      "{stdout}"
-                  command_git_branch_interval    "5"
-                  command_git_branch_rendermode  "static"
-              }
-          }
+            layout {
+                pane size=1 borderless=true {
+                    plugin location="file:${zjstatus-wasm}" {
+                        // Top bar: "Bubble" style with "double pills" for indicators
+                        // Colors: Mantle (#181825) as bar bg, Surface0 (#313244) as module bg, Text (#cdd6f4)
+                        
+                        format_left   "#[fg=#89B4FA,bg=#181825]#[fg=#181825,bg=#89B4FA,bold]  #[fg=#89B4FA,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {session} #[fg=#313244,bg=#181825] {tabs}"
+                        format_right  "#[fg=#f9e2af,bg=#181825]#[fg=#181825,bg=#f9e2af,bold] 󰃭 #[fg=#f9e2af,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {datetime} #[fg=#313244,bg=#181825]"
+                        format_space  "#[bg=#181825]"
+      
+                        border_enabled  "false"
+      
+                        // Tabs: Vivid Green Pill for active, subtle for normal
+                        tab_normal   "#[fg=#6C7086,bg=#181825] {index} {name} "
+                        tab_active   "#[fg=#a6e3a1,bg=#181825]#[fg=#181825,bg=#a6e3a1,bold] {index} {name} #[fg=#a6e3a1,bg=#181825]"
+      
+                        datetime        "{format}"
+                        datetime_format "%H:%M"
+                        datetime_timezone "Europe/Berlin"
+                    }
+                }
+                pane
+                pane size=2 borderless=true {
+                    plugin location="file:${zjstatus-wasm}" {
+                        // Bottom bar
+                        format_left   "{mode}"
+                        format_center "#[fg=#6C7086,bg=#181825]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
+                        format_right  "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold]  #[fg=#cba6f7,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {command_git_branch} #[fg=#313244,bg=#181825]"
+                        format_space  "#[bg=#181825]"
+      
+                        // Modes: Vivid pills with bold text
+                        mode_normal  "#[fg=#89B4FA,bg=#181825]#[fg=#181825,bg=#89B4FA,bold] NORMAL #[fg=#89B4FA,bg=#181825]"
+                        mode_locked  "#[fg=#f38ba8,bg=#181825]#[fg=#181825,bg=#f38ba8,bold] LOCKED #[fg=#f38ba8,bg=#181825]"
+                        mode_resize  "#[fg=#f9e2af,bg=#181825]#[fg=#181825,bg=#f9e2af,bold] RESIZE #[fg=#f9e2af,bg=#181825]"
+                        mode_pane    "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold] PANE #[fg=#cba6f7,bg=#181825]"
+                        mode_tab     "#[fg=#a6e3a1,bg=#181825]#[fg=#181825,bg=#a6e3a1,bold] TAB #[fg=#a6e3a1,bg=#181825]"
+                        mode_scroll  "#[fg=#fab387,bg=#181825]#[fg=#181825,bg=#fab387,bold] SCROLL #[fg=#fab387,bg=#181825]"
+                        mode_session "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold] SESSION #[fg=#cba6f7,bg=#181825]"
+      
+                        // Git branch
+                        command_git_branch_command     "bash -c 'if git rev-parse --git-dir >/dev/null 2>&1; then git rev-parse --abbrev-ref HEAD 2>/dev/null || echo \"detached\"; else echo \"no-repo\"; fi'"
+                        command_git_branch_format      "{stdout}"
+                        command_git_branch_interval    "5"
+                        command_git_branch_rendermode  "static"
+                    }
+                }
             }
+      
           '';
         };
       }
