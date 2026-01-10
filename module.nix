@@ -341,9 +341,9 @@ in
 
                   border_enabled  "false"
 
-                  // Tab styling: block accent on right, purple accent for active
-                  tab_normal   "#[bg=#1a1c24,fg=#9ca3af] {index} {name} #[fg=#cba6f7]█#[reset]"
-                  tab_active   "#[bg=#1a1c24,fg=#9ca3af] {index}#[fg=#cba6f7] {name}#[fg=#cba6f7]█#[reset]"
+                  // Tab styling: brighter background and more highlighted text than corner boxes
+                  tab_normal   "#[bg=#303540,fg=#d4dce3] {index} {name} #[fg=#cba6f7]█#[reset]"
+                  tab_active   "#[bg=#303540,fg=#d4dce3] {index}#[fg=#cba6f7] {name}#[fg=#cba6f7]█#[reset]"
 
                   command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
                   command_user_host_format      "{stdout}"
