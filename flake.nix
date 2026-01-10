@@ -17,6 +17,8 @@
     ) // {
       homeManagerModules.default = ./module.nix;
 
+      lib = import ./lib.nix;
+
       # Optional: overlay for custom packages
       overlays.default = final: prev: {
         zellij-vivid-rounded = ./module.nix;
