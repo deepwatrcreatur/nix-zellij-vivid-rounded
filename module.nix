@@ -335,14 +335,14 @@ in
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
                   // Top bar with subtle highlighted boxes and corner accents
-                  format_left   "#[bg=#2a2b3a,fg=#737c8a] {session} #[fg=#89B4FA]◐#[reset]"
-                  format_right  "#[bg=#2a2b3a,fg=#89B4FA]◑#[fg=#f9e2af] 󰃭 {command_user_host} #[reset]"
-                  format_space  "#[bg=#2a2b3a]"
+                  format_left   "#[bg=#000000,fg=#89B4FA] {session} #[reset] {tabs}"
+                  format_right  "#[reset]#[bg=#000000,fg=#89B4FA]◀#[fg=#89B4FA] 󰃭 {command_user_host} #[reset]"
+                  format_space  "#[bg=#000000]"
 
                   border_enabled  "false"
 
                   // Subtle highlighted boxes with corner accents only
-                  tab_normal   "#[bg=#2a2b3a,fg=#6C7086] {index} {name} #[reset]"
+                  tab_normal   "#[bg=#000000,fg=#6C7086] {index} {name} #[reset]"
                   tab_active   "#[bg=#2a2b3a,fg=#a6e3a1]  {index} {name} #[fg=#a6e3a1]"
 
                   command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
@@ -356,19 +356,18 @@ in
               plugin location="file:${zjstatus-wasm}" {
                   // Bottom bar with subtle mode boxes and corner accents
                   format_left   "{mode}"
-                  format_center "#[bg=#2a2b3a,fg=#6C7086]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit#[reset]"
-                  format_right  "#[bg=#2a2b3a,fg=#89B4FA]◑#[fg=#737c8a] 󰍛 {command_memory} #[reset]"
-                  format_space  "#[bg=#2a2b3a]"
+                  format_center "#[bg=#000000,fg=#89B4FA]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit#[reset]"
+                  format_right  "#[reset]#[bg=#000000,fg=#89B4FA]◀#[fg=#89B4FA] 󰍛 {command_memory} #[reset]"
+                  format_space  "#[bg=#000000]"
 
                   // Subtle mode boxes with corner accents on appropriate sides
-                  mode_normal  "#[bg=#2a2b3a,fg=#737c8a]  NORMAL #[fg=#89B4FA]#[reset]"
-                  mode_locked  "#[bg=#2a2b3a,fg=#737c8a]  LOCKED #[fg=#f38ba8]#[reset]"
-                  mode_resize  "#[bg=#2a2b3a,fg=#737c8a]  RESIZE #[fg=#f9e2af]#[reset]"
-                  mode_pane    "#[bg=#2a2b3a,fg=#737c8a]  PANE #[fg=#cba6f7]#[reset]"
-                  mode_tab     "#[bg=#2a2b3a,fg=#737c8a]  TAB #[fg=#a6e3a1]#[reset]"
-                  mode_scroll  "#[bg=#2a2b3a,fg=#737c8a]  SCROLL #[fg=#fab387]#[reset]"
-                  mode_session "#[bg=#2a2b3a,fg=#737c8a]  SESSION #[fg=#cba6f7]#[reset]"
-
+                  mode_normal  "#[bg=#2a2b3a,fg=#89B4FA] NORMAL #[reset]"
+                  mode_locked  "#[bg=#2a2b3a,fg=#f38ba8] LOCKED #[reset]"
+                  mode_resize  "#[bg=#2a2b3a,fg=#f9e2af] RESIZE #[reset]"
+                  mode_pane    "#[bg=#2a2b3a,fg=#cba6f7] PANE #[reset]"
+                  mode_tab     "#[bg=#2a2b3a,fg=#a6e3a1] TAB #[reset]"
+                  mode_scroll  "#[bg=#2a2b3a,fg=#fab387] SCROLL #[reset]"
+                  mode_session "#[bg=#2a2b3a,fg=#cba6f7] SESSION #[reset]"
                   // Show memory usage in bottom right
                   command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \\$3 \\\"/\\\" \\$2 \\\" GB\\\"}\"'"
                   command_memory_format      "{stdout}"
