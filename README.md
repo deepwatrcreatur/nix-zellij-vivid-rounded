@@ -2,7 +2,7 @@
 
 A highly customized [Zellij](https://zellij.dev/) configuration for NixOS/home-manager featuring a "darker Catppuccin" aesthetic, seamless "double pill" indicators, and thoughtfully remapped keybindings.
 
-![Zellij with vivid rounded tabs](./screenshot.png)
+![Zellij with vivid rounded tabs](./screenshot.png?v=1.0.0)
 
 ## Features
 
