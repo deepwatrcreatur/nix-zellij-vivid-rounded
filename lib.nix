@@ -19,7 +19,7 @@
     command_user_host_format      "{stdout}"
     command_user_host_interval    "60"
     command_user_host_rendermode  "static"
-  ''
+  '';
 
   # KDL configuration for the Bottom Bar (Modes, Hints, Memory)
   bottomBar = ''
@@ -43,5 +43,5 @@
     command_memory_format      "{stdout}"
     command_memory_interval    "5"
     command_memory_rendermode  "static"
-  ''
+  '';
 }
