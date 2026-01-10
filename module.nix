@@ -378,7 +378,8 @@ in
                   command_git_branch_rendermode  "static"
               }
           }
+            }
+          '';
+        };
       }
-    ''
-  };
-}
+      
