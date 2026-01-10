@@ -45,52 +45,53 @@ in
         };
 
         # Define Catppuccin Mocha theme locally to ensure it's available
+        # Using darker backgrounds as requested
         themes.catppuccin-mocha = {
-          bg = "#585b70";
-          fg = "#cdd6f4";
+          bg = "#585b70";      # Surface2
+          fg = "#cdd6f4";      # Text
           red = "#f38ba8";
           green = "#a6e3a1";
           blue = "#89b4fa";
           yellow = "#f9e2af";
-          magenta = "#cba6f7";
-          orange = "#fab387";
-          cyan = "#89dceb";
-          black = "#181825";
-          white = "#cdd6f4";
+          magenta = "#cba6f7"; # Mauve
+          orange = "#fab387";  # Peach
+          cyan = "#89dceb";    # Sky
+          black = "#181825";   # Mantle (Darker Background)
+          white = "#cdd6f4";   # Text
         };
 
         keybinds = {
           # Normal mode keybindings
           normal = {
             # Unbind default Ctrl keybindings to allow TUI apps to use them
-            "unbind \"Ctrl t\"" = { };
-            "unbind \"Ctrl p\"" = { };
-            "unbind \"Ctrl s\"" = { };
-            "unbind \"Ctrl n\"" = { };
-            "unbind \"Ctrl h\"" = { };
-            "unbind \"Ctrl j\"" = { };
-            "unbind \"Ctrl k\"" = { };
-            "unbind \"Ctrl l\"" = { };
-            "unbind \"Ctrl o\"" = { };
-            "unbind \"Ctrl q\"" = { };
-            "unbind \"Ctrl g\"" = { };
-            "unbind \"Ctrl b\"" = { };
+            "unbind \"Ctrl t\"" = {};
+            "unbind \"Ctrl p\"" = {};
+            "unbind \"Ctrl s\"" = {};
+            "unbind \"Ctrl n\"" = {};
+            "unbind \"Ctrl h\"" = {};
+            "unbind \"Ctrl j\"" = {};
+            "unbind \"Ctrl k\"" = {};
+            "unbind \"Ctrl l\"" = {};
+            "unbind \"Ctrl o\"" = {};
+            "unbind \"Ctrl q\"" = {};
+            "unbind \"Ctrl g\"" = {};
+            "unbind \"Ctrl b\"" = {};
 
             # Tab management (Ctrl-Alt)
             "bind \"Ctrl Alt t\"" = {
               SwitchToMode = "Tab";
             };
             "bind \"Ctrl Alt c\"" = {
-              NewTab = { };
+              NewTab = {};
             };
             "bind \"Ctrl Alt x\"" = {
-              CloseTab = { };
+              CloseTab = {};
             };
             "bind \"Ctrl Alt [\"" = {
-              GoToPreviousTab = { };
+              GoToPreviousTab = {};
             };
             "bind \"Ctrl Alt ]\"" = {
-              GoToNextTab = { };
+              GoToNextTab = {};
             };
             "bind \"Ctrl Alt 1\"" = {
               GoToTab = 1;
@@ -145,11 +146,11 @@ in
 
             # Fullscreen
             "bind \"Ctrl Alt f\"" = {
-              ToggleFocusFullscreen = { };
+              ToggleFocusFullscreen = {};
               SwitchToMode = "Normal";
             };
             "bind \"Ctrl Alt z\"" = {
-              ToggleFocusFullscreen = { };
+              ToggleFocusFullscreen = {};
               SwitchToMode = "Normal";
             };
 
@@ -160,7 +161,7 @@ in
 
             # Quit
             "bind \"Ctrl Alt q\"" = {
-              Quit = { };
+              Quit = {};
             };
           };
 
@@ -185,14 +186,14 @@ in
               NewPane = "Down";
             };
             "bind \"x\"" = {
-              CloseFocus = { };
+              CloseFocus = {};
             };
             "bind \"f\"" = {
-              ToggleFocusFullscreen = { };
+              ToggleFocusFullscreen = {};
               SwitchToMode = "Normal";
             };
             "bind \"z\"" = {
-              ToggleFocusFullscreen = { };
+              ToggleFocusFullscreen = {};
               SwitchToMode = "Normal";
             };
             "bind \"Esc\"" = {
@@ -203,10 +204,10 @@ in
           # Tab mode keybindings
           tab = {
             "bind \"h\"" = {
-              GoToPreviousTab = { };
+              GoToPreviousTab = {};
             };
             "bind \"l\"" = {
-              GoToNextTab = { };
+              GoToNextTab = {};
             };
             "bind \"1\"" = {
               GoToTab = 1;
@@ -236,10 +237,10 @@ in
               GoToTab = 9;
             };
             "bind \"c\"" = {
-              NewTab = { };
+              NewTab = {};
             };
             "bind \"x\"" = {
-              CloseTab = { };
+              CloseTab = {};
             };
             "bind \"r\"" = {
               SwitchToMode = "RenameTab";
@@ -289,16 +290,16 @@ in
           # Search mode keybindings
           search = {
             "bind \"c\"" = {
-              ScrollDown = { };
+              ScrollDown = {};
             };
             "bind \"C\"" = {
-              ScrollUp = { };
+              ScrollUp = {};
             };
             "bind \"n\"" = {
-              ScrollDown = { };
+              ScrollDown = {};
             };
             "bind \"N\"" = {
-              ScrollUp = { };
+              ScrollUp = {};
             };
             "bind \"Esc\"" = {
               SwitchToMode = "Normal";
@@ -308,7 +309,7 @@ in
           # Session mode keybindings
           session = {
             "bind \"d\"" = {
-              Detach = { };
+              Detach = {};
             };
             "bind \"w\"" = {
               LaunchOrFocusPlugin = "zellij:session-manager";
@@ -334,48 +335,50 @@ in
       layout {
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Top bar with block accents: green left, purple/yellow right, subtle text
-                  format_left   "#[bg=#a6e3a1,fg=#181825]█#[bg=#2a2b3a,fg=#a6e3a1] {session} #[reset]#[bg=#1a1c24] {tabs} #[reset]"
-                  format_right  "#[reset]#[bg=#1a1c24,fg=#f9e2af]█#[reset]#[bg=#2a2b3a,fg=#f9e2af] 󰃭 {command_user_host} #[reset]"
-                  format_space  "#[bg=#1a1c24]"
+                  # Top bar: "Bubble" style with "double pills" for indicators
+                  # Colors: Mantle (#181825) as bar bg, Surface0 (#313244) as module bg, Text (#cdd6f4)
+                  
+                  format_left   "#[fg=#89B4FA,bg=#181825]#[fg=#181825,bg=#89B4FA,bold]  #[fg=#89B4FA,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {session} #[fg=#313244,bg=#181825] {tabs}"
+                  format_right  "#[fg=#f9e2af,bg=#181825]#[fg=#181825,bg=#f9e2af,bold] 󰃭 #[fg=#f9e2af,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {datetime} #[fg=#313244,bg=#181825]"
+                  format_space  "#[bg=#181825]"
 
                   border_enabled  "false"
 
-                  // Tab styling: brighter background and more highlighted text than corner boxes
-                  tab_normal   "#[bg=#303540,fg=#d4dce3] {index} {name} #[fg=#cba6f7]█#[reset]"
-                  tab_active   "#[bg=#303540,fg=#d4dce3] {index}#[fg=#cba6f7] {name}#[fg=#cba6f7]█#[reset]"
+                  # Tabs: Vivid Green Pill for active, subtle for normal
+                  tab_normal   "#[fg=#6C7086,bg=#181825] {index} {name} "
+                  tab_active   "#[fg=#a6e3a1,bg=#181825]#[fg=#181825,bg=#a6e3a1,bold] {index} {name} #[fg=#a6e3a1,bg=#181825]"
 
-                  command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
-                  command_user_host_format      "{stdout}"
-                  command_user_host_interval    "60"
-                  command_user_host_rendermode  "static"
+                  datetime        "{format}"
+                  datetime_format "%H:%M"
+                  datetime_timezone "Europe/Berlin"
               }
           }
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Bottom bar with block accents on right, mode indicators
+                  # Bottom bar
                   format_left   "{mode}"
-                  format_center "#[bg=#1a1c24,fg=#89B4FA]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit#[reset]"
-                  format_right  "#[reset]#[bg=#1a1c24,fg=#f9e2af]█#[reset]#[bg=#2a2b3a,fg=#f9e2af] 󰍛 {command_memory} #[reset]"
-                  format_space  "#[bg=#1a1c24]"
+                  format_center "#[fg=#6C7086,bg=#181825]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
+                  format_right  "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold]  #[fg=#cba6f7,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {command_git_branch} #[fg=#313244,bg=#181825]"
+                  format_space  "#[bg=#181825]"
 
-                  // Subtle mode boxes with corner accents on appropriate sides
-                  mode_normal  "#[bg=#2a2b3a,fg=#89B4FA] NORMAL #[reset]"
-                  mode_locked  "#[bg=#2a2b3a,fg=#f38ba8] LOCKED #[reset]"
-                  mode_resize  "#[bg=#2a2b3a,fg=#f9e2af] RESIZE #[reset]"
-                  mode_pane    "#[bg=#2a2b3a,fg=#cba6f7] PANE #[reset]"
-                  mode_tab     "#[bg=#2a2b3a,fg=#a6e3a1] TAB #[reset]"
-                  mode_scroll  "#[bg=#2a2b3a,fg=#fab387] SCROLL #[reset]"
-                  mode_session "#[bg=#2a2b3a,fg=#cba6f7] SESSION #[reset]"
-                  // Show memory usage in bottom right
-                  command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \\$3 \\\"/\\\" \\$2}\"'"
-                  command_memory_format      "{stdout}"
-                  command_memory_interval    "5"
-                  command_memory_rendermode  "static"
+                  # Modes: Vivid pills with bold text
+                  mode_normal  "#[fg=#89B4FA,bg=#181825]#[fg=#181825,bg=#89B4FA,bold] NORMAL #[fg=#89B4FA,bg=#181825]"
+                  mode_locked  "#[fg=#f38ba8,bg=#181825]#[fg=#181825,bg=#f38ba8,bold] LOCKED #[fg=#f38ba8,bg=#181825]"
+                  mode_resize  "#[fg=#f9e2af,bg=#181825]#[fg=#181825,bg=#f9e2af,bold] RESIZE #[fg=#f9e2af,bg=#181825]"
+                  mode_pane    "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold] PANE #[fg=#cba6f7,bg=#181825]"
+                  mode_tab     "#[fg=#a6e3a1,bg=#181825]#[fg=#181825,bg=#a6e3a1,bold] TAB #[fg=#a6e3a1,bg=#181825]"
+                  mode_scroll  "#[fg=#fab387,bg=#181825]#[fg=#181825,bg=#fab387,bold] SCROLL #[fg=#fab387,bg=#181825]"
+                  mode_session "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold] SESSION #[fg=#cba6f7,bg=#181825]"
+
+                  # Git branch
+                  command_git_branch_command     "bash -c 'if git rev-parse --git-dir >/dev/null 2>&1; then git rev-parse --abbrev-ref HEAD 2>/dev/null || echo \"detached\"; else echo \"no-repo\"; fi'"
+                  command_git_branch_format      "{stdout}"
+                  command_git_branch_interval    "5"
+                  command_git_branch_rendermode  "static"
               }
           }
       }
-    '';
+    ''
   };
 }

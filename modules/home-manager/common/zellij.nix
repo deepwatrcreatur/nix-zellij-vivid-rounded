@@ -34,52 +34,53 @@ in
         default_layout = "extended";
 
         # Define Catppuccin Mocha theme locally to ensure it's available
+        # Using darker backgrounds as requested
         themes.catppuccin-mocha = {
-          bg = "#585b70";
-          fg = "#cdd6f4";
+          bg = "#585b70";      # Surface2
+          fg = "#cdd6f4";      # Text
           red = "#f38ba8";
           green = "#a6e3a1";
           blue = "#89b4fa";
           yellow = "#f9e2af";
-          magenta = "#cba6f7";
-          orange = "#fab387";
-          cyan = "#89dceb";
-          black = "#181825";
-          white = "#cdd6f4";
+          magenta = "#cba6f7"; # Mauve
+          orange = "#fab387";  # Peach
+          cyan = "#89dceb";    # Sky
+          black = "#181825";   # Mantle (Darker Background)
+          white = "#cdd6f4";   # Text
         };
 
         keybinds = {
           # Normal mode keybindings
           normal = {
             # Unbind default Ctrl keybindings to allow TUI apps to use them
-            "unbind \"Ctrl t\"" = { };
-            "unbind \"Ctrl p\"" = { };
-            "unbind \"Ctrl s\"" = { };
-            "unbind \"Ctrl n\"" = { };
-            "unbind \"Ctrl h\"" = { };
-            "unbind \"Ctrl j\"" = { };
-            "unbind \"Ctrl k\"" = { };
-            "unbind \"Ctrl l\"" = { };
-            "unbind \"Ctrl o\"" = { };
-            "unbind \"Ctrl q\"" = { };
-            "unbind \"Ctrl g\"" = { };
-            "unbind \"Ctrl b\"" = { };
+            "unbind \"Ctrl t\"" = {};
+            "unbind \"Ctrl p\"" = {};
+            "unbind \"Ctrl s\"" = {};
+            "unbind \"Ctrl n\"" = {};
+            "unbind \"Ctrl h\"" = {};
+            "unbind \"Ctrl j\"" = {};
+            "unbind \"Ctrl k\"" = {};
+            "unbind \"Ctrl l\"" = {};
+            "unbind \"Ctrl o\"" = {};
+            "unbind \"Ctrl q\"" = {};
+            "unbind \"Ctrl g\"" = {};
+            "unbind \"Ctrl b\"" = {};
 
             # Tab management (Ctrl-Alt)
             "bind \"Ctrl Alt t\"" = {
               SwitchToMode = "Tab";
             };
             "bind \"Ctrl Alt c\"" = {
-              NewTab = { };
+              NewTab = {};
             };
             "bind \"Ctrl Alt x\"" = {
-              CloseTab = { };
+              CloseTab = {};
             };
             "bind \"Ctrl Alt [\"" = {
-              GoToPreviousTab = { };
+              GoToPreviousTab = {};
             };
             "bind \"Ctrl Alt ]\"" = {
-              GoToNextTab = { };
+              GoToNextTab = {};
             };
             "bind \"Ctrl Alt 1\"" = {
               GoToTab = 1;
@@ -134,11 +135,11 @@ in
 
             # Fullscreen
             "bind \"Ctrl Alt f\"" = {
-              ToggleFocusFullscreen = { };
+              ToggleFocusFullscreen = {};
               SwitchToMode = "Normal";
             };
             "bind \"Ctrl Alt z\"" = {
-              ToggleFocusFullscreen = { };
+              ToggleFocusFullscreen = {};
               SwitchToMode = "Normal";
             };
 
@@ -149,7 +150,7 @@ in
 
             # Quit
             "bind \"Ctrl Alt q\"" = {
-              Quit = { };
+              Quit = {};
             };
           };
 
@@ -174,14 +175,14 @@ in
               NewPane = "Down";
             };
             "bind \"x\"" = {
-              CloseFocus = { };
+              CloseFocus = {};
             };
             "bind \"f\"" = {
-              ToggleFocusFullscreen = { };
+              ToggleFocusFullscreen = {};
               SwitchToMode = "Normal";
             };
             "bind \"z\"" = {
-              ToggleFocusFullscreen = { };
+              ToggleFocusFullscreen = {};
               SwitchToMode = "Normal";
             };
             "bind \"Esc\"" = {
@@ -192,10 +193,10 @@ in
           # Tab mode keybindings
           tab = {
             "bind \"h\"" = {
-              GoToPreviousTab = { };
+              GoToPreviousTab = {};
             };
             "bind \"l\"" = {
-              GoToNextTab = { };
+              GoToNextTab = {};
             };
             "bind \"1\"" = {
               GoToTab = 1;
@@ -225,10 +226,10 @@ in
               GoToTab = 9;
             };
             "bind \"c\"" = {
-              NewTab = { };
+              NewTab = {};
             };
             "bind \"x\"" = {
-              CloseTab = { };
+              CloseTab = {};
             };
             "bind \"r\"" = {
               SwitchToMode = "RenameTab";
@@ -278,16 +279,16 @@ in
           # Search mode keybindings
           search = {
             "bind \"c\"" = {
-              ScrollDown = { };
+              ScrollDown = {};
             };
             "bind \"C\"" = {
-              ScrollUp = { };
+              ScrollUp = {};
             };
             "bind \"n\"" = {
-              ScrollDown = { };
+              ScrollDown = {};
             };
             "bind \"N\"" = {
-              ScrollUp = { };
+              ScrollUp = {};
             };
             "bind \"Esc\"" = {
               SwitchToMode = "Normal";
@@ -297,7 +298,7 @@ in
           # Session mode keybindings
           session = {
             "bind \"d\"" = {
-              Detach = { };
+              Detach = {};
             };
             "bind \"w\"" = {
               LaunchOrFocusPlugin = "zellij:session-manager";
@@ -323,16 +324,18 @@ in
       layout {
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Top bar with floating pill aesthetic
-                  format_left   "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]   {session}  #[bg=#1e1e2e,fg=#89B4FA] {tabs}"
-                  format_right  "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]  󰃭 {datetime}  #[fg=#89B4FA,bg=#181825]"
-                  format_space  ""
+                  # Top bar: "Bubble" style with "double pills" for indicators
+                  # Colors: Mantle (#181825) as bar bg, Surface0 (#313244) as module bg, Text (#cdd6f4)
+                  
+                  format_left   "#[fg=#89B4FA,bg=#181825]#[fg=#181825,bg=#89B4FA,bold]  #[fg=#89B4FA,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {session} #[fg=#313244,bg=#181825] {tabs}"
+                  format_right  "#[fg=#f9e2af,bg=#181825]#[fg=#181825,bg=#f9e2af,bold] 󰃭 #[fg=#f9e2af,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {datetime} #[fg=#313244,bg=#181825]"
+                  format_space  "#[bg=#181825]"
 
                   border_enabled  "false"
 
-                  // Complete pill shapes with double-space padding for "fat pills"
-                  tab_normal   "#[fg=#6C7086] {index} {name} "
-                  tab_active   "#[fg=#a6e3a1,bold]#[bg=#a6e3a1,fg=#1e1e2e,bold]  {index} {name}  #[bg=#1e1e2e,fg=#a6e3a1]"
+                  # Tabs: Vivid Green Pill for active, subtle for normal
+                  tab_normal   "#[fg=#6C7086,bg=#181825] {index} {name} "
+                  tab_active   "#[fg=#a6e3a1,bg=#181825]#[fg=#181825,bg=#a6e3a1,bold] {index} {name} #[fg=#a6e3a1,bg=#181825]"
 
                   datetime        "{format}"
                   datetime_format "%H:%M"
@@ -342,22 +345,22 @@ in
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  // Bottom bar with complete pill shapes and improved git detection
+                  # Bottom bar
                   format_left   "{mode}"
-                  format_center "#[fg=#89B4FA,bold]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  format_right  "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]   {command_git_branch}  #[fg=#cba6f7,bg=#181825]"
-                  format_space  ""
+                  format_center "#[fg=#6C7086,bg=#181825]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
+                  format_right  "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold]  #[fg=#cba6f7,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {command_git_branch} #[fg=#313244,bg=#181825]"
+                  format_space  "#[bg=#181825]"
 
-                  // Complete pill shapes for all modes with leading separators
-                  mode_normal  "#[fg=#89B4FA,bold]#[bg=#89B4FA,fg=#1e1e2e,bold]  NORMAL  #[bg=#1e1e2e,fg=#89B4FA]"
-                  mode_locked  "#[fg=#f38ba8,bold]#[bg=#f38ba8,fg=#1e1e2e,bold]  LOCKED  #[bg=#1e1e2e,fg=#f38ba8]"
-                  mode_resize  "#[fg=#f9e2af,bold]#[bg=#f9e2af,fg=#1e1e2e,bold]  RESIZE  #[bg=#1e1e2e,fg=#f9e2af]"
-                  mode_pane    "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]  PANE  #[bg=#1e1e2e,fg=#cba6f7]"
-                  mode_tab     "#[fg=#a6e3a1,bold]#[bg=#a6e3a1,fg=#1e1e2e,bold]  TAB  #[bg=#1e1e2e,fg=#a6e3a1]"
-                  mode_scroll  "#[fg=#fab387,bold]#[bg=#fab387,fg=#1e1e2e,bold]  SCROLL  #[bg=#1e1e2e,fg=#fab387]"
-                  mode_session "#[fg=#cba6f7,bold]#[bg=#cba6f7,fg=#1e1e2e,bold]  SESSION  #[bg=#1e1e2e,fg=#cba6f7]"
+                  # Modes: Vivid pills with bold text
+                  mode_normal  "#[fg=#89B4FA,bg=#181825]#[fg=#181825,bg=#89B4FA,bold] NORMAL #[fg=#89B4FA,bg=#181825]"
+                  mode_locked  "#[fg=#f38ba8,bg=#181825]#[fg=#181825,bg=#f38ba8,bold] LOCKED #[fg=#f38ba8,bg=#181825]"
+                  mode_resize  "#[fg=#f9e2af,bg=#181825]#[fg=#181825,bg=#f9e2af,bold] RESIZE #[fg=#f9e2af,bg=#181825]"
+                  mode_pane    "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold] PANE #[fg=#cba6f7,bg=#181825]"
+                  mode_tab     "#[fg=#a6e3a1,bg=#181825]#[fg=#181825,bg=#a6e3a1,bold] TAB #[fg=#a6e3a1,bg=#181825]"
+                  mode_scroll  "#[fg=#fab387,bg=#181825]#[fg=#181825,bg=#fab387,bold] SCROLL #[fg=#fab387,bg=#181825]"
+                  mode_session "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold]SESSION #[fg=#cba6f7,bg=#181825]"
 
-                  // Improved git branch detection with fallback and better error handling
+                  # Git branch
                   command_git_branch_command     "bash -c 'if git rev-parse --git-dir >/dev/null 2>&1; then git rev-parse --abbrev-ref HEAD 2>/dev/null || echo \"detached\"; else echo \"no-repo\"; fi'"
                   command_git_branch_format      "{stdout}"
                   command_git_branch_interval    "5"
