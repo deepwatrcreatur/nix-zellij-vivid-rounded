@@ -335,15 +335,15 @@ in
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
                   // Top bar with subtle highlighted boxes and corner accents
-                  format_left   "#[bg=#000000,fg=#89B4FA] {session} #[reset] {tabs}"
-                  format_right  "#[reset]#[bg=#000000,fg=#89B4FA]◀#[fg=#89B4FA] 󰃭 {command_user_host} #[reset]"
-                  format_space  "#[bg=#000000]"
+                  format_left   "#[bg=#2a2b3a,fg=#89B4FA]  {session} #[reset]#[bg=#3a4453] {tabs}#[reset]"
+                  format_right  "#[reset]#[bg=#3a4453,fg=#89B4FA]◀#[reset]#[bg=#2a2b3a,fg=#89B4FA] 󰃭 {command_user_host} #[reset]"
+                  format_space  "#[bg=#3a4453]"
 
                   border_enabled  "false"
 
                   // Subtle highlighted boxes with corner accents only
-                  tab_normal   "#[bg=#000000,fg=#6C7086] {index} {name} #[reset]"
-                  tab_active   "#[bg=#2a2b3a,fg=#a6e3a1]  {index} {name} #[fg=#a6e3a1]"
+                  tab_normal   "#[bg=#3a4453,fg=#6C7086] {index} {name} #[reset]"
+                  tab_active   "#[bg=#3a4453,fg=#a6e3a1]◀{index}#[fg=#cba6f7] {name} #[reset]"
 
                   command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
                   command_user_host_format      "{stdout}"
@@ -356,9 +356,9 @@ in
               plugin location="file:${zjstatus-wasm}" {
                   // Bottom bar with subtle mode boxes and corner accents
                   format_left   "{mode}"
-                  format_center "#[bg=#000000,fg=#89B4FA]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit#[reset]"
-                  format_right  "#[reset]#[bg=#000000,fg=#89B4FA]◀#[fg=#89B4FA] 󰍛 {command_memory} #[reset]"
-                  format_space  "#[bg=#000000]"
+                  format_center "#[bg=#3a4453,fg=#89B4FA]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit#[reset]"
+                  format_right  "#[reset]#[bg=#3a4453,fg=#89B4FA]◀#[reset]#[bg=#2a2b3a,fg=#89B4FA] 󰍛 {command_memory} #[reset]"
+                  format_space  "#[bg=#3a4453]"
 
                   // Subtle mode boxes with corner accents on appropriate sides
                   mode_normal  "#[bg=#2a2b3a,fg=#89B4FA] NORMAL #[reset]"
@@ -369,7 +369,7 @@ in
                   mode_scroll  "#[bg=#2a2b3a,fg=#fab387] SCROLL #[reset]"
                   mode_session "#[bg=#2a2b3a,fg=#cba6f7] SESSION #[reset]"
                   // Show memory usage in bottom right
-                  command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \\$3 \\\"/\\\" \\$2 \\\" GB\\\"}\"'"
+                  command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \\$3 \\\"/\\\" \\$2}\"'"
                   command_memory_format      "{stdout}"
                   command_memory_interval    "5"
                   command_memory_rendermode  "static"
