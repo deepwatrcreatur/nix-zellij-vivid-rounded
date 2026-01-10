@@ -328,18 +328,19 @@ in
                   // Colors: Mantle (#181825) as bar bg, Surface0 (#313244) as module bg, Text (#cdd6f4)
                   
                   format_left   "#[fg=#89B4FA,bg=#181825]#[fg=#181825,bg=#89B4FA,bold]  #[fg=#89B4FA,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {session} #[fg=#313244,bg=#181825] {tabs}"
-                  format_right  "#[fg=#f9e2af,bg=#181825]#[fg=#181825,bg=#f9e2af,bold] 󰃭 #[fg=#f9e2af,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {datetime} #[fg=#313244,bg=#181825]"
+                  format_right  "#[fg=#f9e2af,bg=#181825]#[fg=#181825,bg=#f9e2af,bold] 󰃭 #[fg=#f9e2af,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {command_user_host} #[fg=#313244,bg=#181825]"
                   format_space  "#[bg=#181825]"
 
                   border_enabled  "false"
 
-                  // Tabs: Vivid Green Pill for active, subtle for normal
+                  // Tabs: Segmented Pill (Green Index + Dark Name)
                   tab_normal   "#[fg=#6C7086,bg=#181825] {index} {name} "
-                  tab_active   "#[fg=#a6e3a1,bg=#181825]#[fg=#181825,bg=#a6e3a1,bold] {index} {name} #[fg=#a6e3a1,bg=#181825]"
+                  tab_active   "#[fg=#a6e3a1,bg=#181825]#[fg=#181825,bg=#a6e3a1,bold] {index} #[fg=#a6e3a1,bg=#313244,bold]#[fg=#cdd6f4,bg=#313244,bold] {name} #[fg=#313244,bg=#181825,bold]"
 
-                  datetime        "{format}"
-                  datetime_format "%H:%M"
-                  datetime_timezone "Europe/Berlin"
+                  command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
+                  command_user_host_format      "{stdout}"
+                  command_user_host_interval    "60"
+                  command_user_host_rendermode  "static"
               }
           }
           pane
@@ -348,7 +349,7 @@ in
                   // Bottom bar
                   format_left   "{mode}"
                   format_center "#[fg=#6C7086,bg=#181825]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
-                  format_right  "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold]  #[fg=#cba6f7,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {command_git_branch} #[fg=#313244,bg=#181825]"
+                  format_right  "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold] 󰍛 #[fg=#cba6f7,bg=#313244]#[fg=#cdd6f4,bg=#313244,bold] {command_memory} #[fg=#313244,bg=#181825]"
                   format_space  "#[bg=#181825]"
 
                   // Modes: Vivid pills with bold text
@@ -360,11 +361,11 @@ in
                   mode_scroll  "#[fg=#fab387,bg=#181825]#[fg=#181825,bg=#fab387,bold] SCROLL #[fg=#fab387,bg=#181825]"
                   mode_session "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold] SESSION #[fg=#cba6f7,bg=#181825]"
 
-                  // Git branch
-                  command_git_branch_command     "bash -c 'if git rev-parse --git-dir >/dev/null 2>&1; then git rev-parse --abbrev-ref HEAD 2>/dev/null || echo \"detached\"; else echo \"no-repo\"; fi'"
-                  command_git_branch_format      "{stdout}"
-                  command_git_branch_interval    "5"
-                  command_git_branch_rendermode  "static"
+                  // Memory Usage
+                  command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \\$3 \\\"/\\\" \\$2}\"'"
+                  command_memory_format      "{stdout}"
+                  command_memory_interval    "5"
+                  command_memory_rendermode  "static"
               }
           }
       }
