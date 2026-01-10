@@ -5,13 +5,15 @@ A highly customized [Zellij](https://zellij.dev/) configuration for NixOS/home-m
 ## Features
 
 ### Visual Design
-- **Vivid color palette**: Bright, saturated Catppuccin Mocha theme with:
-  - Light green active tabs (`#a6e3a1`)
-  - Light blue status bars (`#89B4FA`)
-  - Vibrant accent colors across all modes (orange, purple, cyan, yellow)
-- **Rounded tab indicators**: Pill-shaped active tabs with smooth visual separation
-- **Custom layout**: Top status bar showing session name and tabs, bottom guide bar with keybinding reminders
-- **Git branch display**: Shows current branch in bottom right
+- **Catppuccin Mocha theme**: Dark mode with carefully balanced color palette
+  - Dark background (#2a2b3a) for all bars and elements
+  - Subtle gray text (#737c8a) for primary content
+  - Vivid colors only on rounded corner indicators (blue, green, yellow, orange, purple)
+- **Rounded corner separators**: Visual section boundaries using left/right half-circles (◐ ◑)
+- **Solid status bars**: Continuous dark background across entire width of top and bottom rows
+- **Custom layout**:
+  - Top: Session name + tabs + user@host + memory
+  - Bottom: Current mode + keybinding hints + memory usage
 
 ### Clipboard & Text Selection
 - **Automatic copy-to-clipboard**: Text selection automatically copies to system clipboard
@@ -109,10 +111,37 @@ This is different from traditional terminal fullscreen (F11) which would maximiz
 
 ## Customization
 
-The module respects home-manager conventions. You can:
-- Override the theme by modifying `config.programs.zellij.settings.themes`
-- Add additional keybindings via `config.programs.zellij.settings.keybinds`
-- Modify the layout by editing the KDL in `xdg.configFile."zellij/layouts/extended.kdl"`
+### Configuration Options
+
+The module provides a `programs.zellij-vivid-rounded` option to control the setup:
+
+```nix
+programs.zellij-vivid-rounded = {
+  enable = true;  # Enable the module (default: false)
+};
+```
+
+### Further Customization
+
+You can extend or override this configuration:
+
+- **Theme colors**: Modify `config.programs.zellij.settings.themes.catppuccin-mocha`
+- **Keybindings**: Add or override bindings in `config.programs.zellij.settings.keybinds`
+- **Layout**: Edit the KDL layout file in `xdg.configFile."zellij/layouts/extended.kdl"`
+- **UI settings**: Customize `config.programs.zellij.settings.ui` for pane frame appearance
+
+Example: Override tab colors in your home configuration:
+
+```nix
+{
+  imports = [ zellij-vivid-rounded.homeManagerModules.default ];
+
+  programs.zellij-vivid-rounded.enable = true;
+
+  # Override specific settings
+  programs.zellij.settings.themes.catppuccin-mocha.green = "#90ee90";
+}
+```
 
 ## Screenshot
 
@@ -125,41 +154,23 @@ The screenshot shows:
 - Multiple tabs with pill-shaped backgrounds
 - System info in top-right: OS symbol + user@host + memory usage
 
-### Current State (Recent Updates)
+### Current State (Latest Aesthetic)
 
-✅ **Fixed:**
-- Ctrl+Alt modifier shown in status bar
-- User@host correctly displayed in top-right corner
-- Bottom status bar with colored boxes organizing keybinding hints
-- Clipboard auto-copy on text selection
-- Rounded pane frame corners (ui.pane_frames.rounded_corners)
-- **Tab pill-shape styling restored** - Using background color block approach for true rounded visual effect
-- **Top-right system info box** - Added pill-shaped styling with light blue background
-- **Bottom-right git branch** - Added pill-shaped styling with purple background
+The current design implements a tmux-inspired aesthetic with:
 
-All visual polish elements now complete - tabs, mode indicators, and status displays have proper rounded pill shapes using background color contrast effects (matching the original design approach).
+✅ **Visual Design:**
+- **Solid dark bars** - Continuous dark background (#2a2b3a) across entire top and bottom rows
+- **Subtle text highlighting** - All text in subtle gray (#737c8a) for understated appearance
+- **Rounded corner separators** - Left/right facing rounded half-circles (◐ ◑) between sections
+- **Vivid accent colors** - Colors only used on rounded corner indicators and section dividers
+- **Proper tab bars** - Tabs displayed with dark background and proper styling
+- **Clean sections** - Clear visual separation between session/tabs/user@host (top) and mode/hints/memory (bottom)
 
-## Integration with Your Multi-Host Setup
-
-Use in your unified-nix-configuration:
-
-```nix
-{
-  inputs = {
-    zellij-vivid-rounded.url = "github:deepwatrcreatur/nix-zellij-vivid-rounded";
-  };
-
-  outputs = { zellij-vivid-rounded, ... }@inputs:
-    {
-      homeConfigurations.hostname = home-manager.lib.homeManagerConfiguration {
-        modules = [
-          zellij-vivid-rounded.homeManagerModules.default
-          # ... your other modules
-        ];
-      };
-    };
-}
-```
+The design philosophy prioritizes clarity and readability by using:
+- Dark neutral backgrounds as the foundation
+- Subtle gray text for primary content
+- Vivid accent colors only at strategic section boundaries
+- Consistent spacing and alignment throughout
 
 ## License
 
