@@ -6,6 +6,10 @@
     format_left   "#[fg=#89B4FA,bg=#181825]#[fg=#181825,bg=#89B4FA,bold]  #[fg=#cdd6f4,bg=#313244,bold] {session} #[fg=#313244,bg=#181825] {tabs}"
     format_right  "#[fg=#f9e2af,bg=#181825]#[fg=#181825,bg=#f9e2af,bold] 󰃭 #[fg=#cdd6f4,bg=#313244,bold] {command_user_host} #[fg=#313244,bg=#181825]"
     format_space  "#[bg=#181825]"
+    format_hide_on_overlength "true"
+    format_precedence "lrc"
+
+    border_enabled  "false"
 
     border_enabled  "false"
 
@@ -28,6 +32,10 @@
     format_center "#[fg=#6C7086,bg=#181825]Ctrl+Alt: [t]ab [p]ane [s]plit [v]ert [h/j/k/l]focus [f]ull [q]uit"
     format_right  "#[fg=#cba6f7,bg=#181825]#[fg=#181825,bg=#cba6f7,bold] 󰍛 #[fg=#cdd6f4,bg=#313244,bold] {command_memory} #[fg=#313244,bg=#181825]"
     format_space  "#[bg=#181825]"
+    format_hide_on_overlength "true"
+    format_precedence "lrc"
+
+    border_enabled  "false"
 
     // Modes: Flat left edge, rounded right edge
     mode_normal  "#[fg=#181825,bg=#89B4FA,bold] NORMAL #[fg=#89B4FA,bg=#181825]"
