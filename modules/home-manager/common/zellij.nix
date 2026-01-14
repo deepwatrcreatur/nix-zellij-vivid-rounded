@@ -10,10 +10,11 @@ with lib;
 let
   cfg = config.programs.zellij-extended;
   # Fetch zjstatus wasm directly since it's not in nixpkgs
-  zjstatus-wasm = pkgs.fetchurl {
-    url = "https://github.com/dj95/zjstatus/releases/download/v0.17.0/zjstatus.wasm";
-    sha256 = "1rbvazam9qdj2z21fgzjvbyp5mcrxw28nprqsdzal4dqbm5dy112";
-  };
+  zjstatus-wasm =
+    pkgs.zjstatus-wasm or (pkgs.fetchurl {
+      url = "https://github.com/dj95/zjstatus/releases/download/v0.17.0/zjstatus.wasm";
+      sha256 = "1rbvazam9qdj2z21fgzjvbyp5mcrxw28nprqsdzal4dqbm5dy112";
+    });
 in
 {
   options.programs.zellij-extended = {
@@ -36,51 +37,51 @@ in
         # Define Catppuccin Mocha theme locally to ensure it's available
         # Using darker backgrounds as requested
         themes.catppuccin-mocha = {
-          bg = "#585b70";      # Surface2
-          fg = "#cdd6f4";      # Text
+          bg = "#585b70"; # Surface2
+          fg = "#cdd6f4"; # Text
           red = "#f38ba8";
           green = "#a6e3a1";
           blue = "#89b4fa";
           yellow = "#f9e2af";
           magenta = "#cba6f7"; # Mauve
-          orange = "#fab387";  # Peach
-          cyan = "#89dceb";    # Sky
-          black = "#181825";   # Mantle (Darker Background)
-          white = "#cdd6f4";   # Text
+          orange = "#fab387"; # Peach
+          cyan = "#89dceb"; # Sky
+          black = "#181825"; # Mantle (Darker Background)
+          white = "#cdd6f4"; # Text
         };
 
         keybinds = {
           # Normal mode keybindings
           normal = {
             # Unbind default Ctrl keybindings to allow TUI apps to use them
-            "unbind \"Ctrl t\"" = {};
-            "unbind \"Ctrl p\"" = {};
-            "unbind \"Ctrl s\"" = {};
-            "unbind \"Ctrl n\"" = {};
-            "unbind \"Ctrl h\"" = {};
-            "unbind \"Ctrl j\"" = {};
-            "unbind \"Ctrl k\"" = {};
-            "unbind \"Ctrl l\"" = {};
-            "unbind \"Ctrl o\"" = {};
-            "unbind \"Ctrl q\"" = {};
-            "unbind \"Ctrl g\"" = {};
-            "unbind \"Ctrl b\"" = {};
+            "unbind \"Ctrl t\"" = { };
+            "unbind \"Ctrl p\"" = { };
+            "unbind \"Ctrl s\"" = { };
+            "unbind \"Ctrl n\"" = { };
+            "unbind \"Ctrl h\"" = { };
+            "unbind \"Ctrl j\"" = { };
+            "unbind \"Ctrl k\"" = { };
+            "unbind \"Ctrl l\"" = { };
+            "unbind \"Ctrl o\"" = { };
+            "unbind \"Ctrl q\"" = { };
+            "unbind \"Ctrl g\"" = { };
+            "unbind \"Ctrl b\"" = { };
 
             # Tab management (Ctrl-Alt)
             "bind \"Ctrl Alt t\"" = {
               SwitchToMode = "Tab";
             };
             "bind \"Ctrl Alt c\"" = {
-              NewTab = {};
+              NewTab = { };
             };
             "bind \"Ctrl Alt x\"" = {
-              CloseTab = {};
+              CloseTab = { };
             };
             "bind \"Ctrl Alt [\"" = {
-              GoToPreviousTab = {};
+              GoToPreviousTab = { };
             };
             "bind \"Ctrl Alt ]\"" = {
-              GoToNextTab = {};
+              GoToNextTab = { };
             };
             "bind \"Ctrl Alt 1\"" = {
               GoToTab = 1;
@@ -135,11 +136,11 @@ in
 
             # Fullscreen
             "bind \"Ctrl Alt f\"" = {
-              ToggleFocusFullscreen = {};
+              ToggleFocusFullscreen = { };
               SwitchToMode = "Normal";
             };
             "bind \"Ctrl Alt z\"" = {
-              ToggleFocusFullscreen = {};
+              ToggleFocusFullscreen = { };
               SwitchToMode = "Normal";
             };
 
@@ -150,7 +151,7 @@ in
 
             # Quit
             "bind \"Ctrl Alt q\"" = {
-              Quit = {};
+              Quit = { };
             };
           };
 
@@ -175,14 +176,14 @@ in
               NewPane = "Down";
             };
             "bind \"x\"" = {
-              CloseFocus = {};
+              CloseFocus = { };
             };
             "bind \"f\"" = {
-              ToggleFocusFullscreen = {};
+              ToggleFocusFullscreen = { };
               SwitchToMode = "Normal";
             };
             "bind \"z\"" = {
-              ToggleFocusFullscreen = {};
+              ToggleFocusFullscreen = { };
               SwitchToMode = "Normal";
             };
             "bind \"Esc\"" = {
@@ -193,10 +194,10 @@ in
           # Tab mode keybindings
           tab = {
             "bind \"h\"" = {
-              GoToPreviousTab = {};
+              GoToPreviousTab = { };
             };
             "bind \"l\"" = {
-              GoToNextTab = {};
+              GoToNextTab = { };
             };
             "bind \"1\"" = {
               GoToTab = 1;
@@ -226,10 +227,10 @@ in
               GoToTab = 9;
             };
             "bind \"c\"" = {
-              NewTab = {};
+              NewTab = { };
             };
             "bind \"x\"" = {
-              CloseTab = {};
+              CloseTab = { };
             };
             "bind \"r\"" = {
               SwitchToMode = "RenameTab";
@@ -279,16 +280,16 @@ in
           # Search mode keybindings
           search = {
             "bind \"c\"" = {
-              ScrollDown = {};
+              ScrollDown = { };
             };
             "bind \"C\"" = {
-              ScrollUp = {};
+              ScrollUp = { };
             };
             "bind \"n\"" = {
-              ScrollDown = {};
+              ScrollDown = { };
             };
             "bind \"N\"" = {
-              ScrollUp = {};
+              ScrollUp = { };
             };
             "bind \"Esc\"" = {
               SwitchToMode = "Normal";
@@ -298,7 +299,7 @@ in
           # Session mode keybindings
           session = {
             "bind \"d\"" = {
-              Detach = {};
+              Detach = { };
             };
             "bind \"w\"" = {
               LaunchOrFocusPlugin = "zellij:session-manager";
@@ -320,23 +321,24 @@ in
     };
 
     # Define an extended layout with rounded corners and vivid colors
-    xdg.configFile."zellij/layouts/extended.kdl".text = 
+    xdg.configFile."zellij/layouts/extended.kdl".text =
       let
         themeLib = import ../../../lib.nix;
-      in ''
-      layout {
-          pane size=1 borderless=true {
-              plugin location="file:${zjstatus-wasm}" {
-                  ${themeLib.topBar}
-              }
-          }
-          pane
-          pane size=2 borderless=true {
-              plugin location="file:${zjstatus-wasm}" {
-                  ${themeLib.bottomBar}
-              }
-          }
-      }
-    '';
+      in
+      ''
+        layout {
+            pane size=1 borderless=true {
+                plugin location="file:${zjstatus-wasm}" {
+                    ${themeLib.topBar}
+                }
+            }
+            pane
+            pane size=2 borderless=true {
+                plugin location="file:${zjstatus-wasm}" {
+                    ${themeLib.bottomBar}
+                }
+            }
+        }
+      '';
   };
 }
