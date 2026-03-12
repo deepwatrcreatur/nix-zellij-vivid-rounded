@@ -155,15 +155,14 @@ in
               SwitchToMode = "Normal";
             };
 
-            # Back to normal mode
-            "bind \"Esc\"" = {
-              SwitchToMode = "Normal";
-            };
+            # Back to normal mode is handled by other modes binding Esc.
+            # No binding for Esc in normal mode, so it's passed to the application.
 
             # Quit
             "bind \"Ctrl Alt q\"" = {
               Quit = { };
             };
+
           };
 
           # Pane mode keybindings
