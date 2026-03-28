@@ -19,6 +19,11 @@ in
 {
   options.programs.zellij-vivid-rounded = {
     enable = mkEnableOption "Zellij with vivid colors, rounded tabs, and Ctrl-Alt keybindings";
+    showStartupTips = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Whether Zellij should show startup tips.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -30,7 +35,7 @@ in
 
         theme = "catppuccin-mocha";
 
-        show_startup_tips = false;
+        show_startup_tips = cfg.showStartupTips;
 
         default_layout = "extended";
 

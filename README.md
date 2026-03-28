@@ -77,7 +77,10 @@ Add to your `flake.nix`:
 Then enable in your home-manager configuration:
 
 ```nix
-programs.zellij-vivid-rounded.enable = true;
+programs.zellij-vivid-rounded = {
+  enable = true;
+  showStartupTips = false;
+};
 ```
 
 ## Integrating with Custom Layouts (e.g., Yazelix)
