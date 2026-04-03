@@ -51,7 +51,7 @@
     // free(1) is Linux-specific; the command falls back to "N/A" on other systems.
     // Override memoryCommand in the module option to use vm_stat(1) on macOS or
     // any other host-specific tool.
-    command_memory_command     "sh -c 'free -h 2>/dev/null | awk \"/^Mem:/{print \\$3 \\\"/\\\" \\$2}\" || echo N/A'"
+    command_memory_command     "sh -c 'free -h 2>/dev/null | awk \"/^Mem:/{print \\$3 \\\"/\\\" \\$2; ok=1} END{if(!ok) exit 1}\" || echo N/A'"
     command_memory_format      "{stdout}"
     command_memory_interval    "5"
     command_memory_rendermode  "static"
