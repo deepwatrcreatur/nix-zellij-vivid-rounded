@@ -122,6 +122,14 @@ Standard Zellij uses raw Ctrl keybindings (Ctrl+p, Ctrl+t, etc.) which conflict 
 
 By using **Ctrl+Alt** instead, we free up raw Ctrl entirely for these applications while maintaining intuitive zellij control.
 
+## Agent Work Queue
+
+If you are assigning or running coding agents, start here:
+
+- [`docs/work-items/START-HERE.md`](docs/work-items/START-HERE.md)
+
+The seed roadmap behind that queue is tracked in [`IMPROVEMENTS.md`](IMPROVEMENTS.md).
+
 ## License
 
 MIT
