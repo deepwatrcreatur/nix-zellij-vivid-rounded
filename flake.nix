@@ -56,14 +56,15 @@
             pkgs.runCommand "lib-eval-check" { } "touch $out";
 
           # Verify that the formatter has been applied (no diff produced).
-          formatting = pkgs.runCommand "formatting-check"
-            {
-              nativeBuildInputs = [ pkgs.nixfmt-rfc-style ];
-            }
-            ''
-              nixfmt --check ${./.}
-              touch $out
-            '';
+          formatting =
+            pkgs.runCommand "formatting-check"
+              {
+                nativeBuildInputs = [ pkgs.nixfmt-rfc-style ];
+              }
+              ''
+                nixfmt --check ${./.}
+                touch $out
+              '';
         };
       }
     )
