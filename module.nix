@@ -67,36 +67,35 @@ in
 
     # Define an extended layout with rounded corners and vivid colors
 
-    xdg.configFile."zellij/layouts/extended.kdl".text =
-      ''
+    xdg.configFile."zellij/layouts/extended.kdl".text = ''
 
-        layout {
+      layout {
 
-            pane size=1 borderless=true {
+          pane size=1 borderless=true {
 
-                plugin location="file:${zjstatus-wasm}" {
+              plugin location="file:${zjstatus-wasm}" {
 
-                    ${themeLib.topBar}
+                  ${themeLib.topBar}
 
-                }
+              }
 
-            }
+          }
 
-            pane
+          pane
 
-            pane size=2 borderless=true {
+          pane size=2 borderless=true {
 
-                plugin location="file:${zjstatus-wasm}" {
+              plugin location="file:${zjstatus-wasm}" {
 
-                    ${themeLib.bottomBar}
+                  ${themeLib.bottomBar}
 
-                }
+              }
 
-            }
+          }
 
-        }
+      }
 
-      '';
+    '';
 
   };
 }
