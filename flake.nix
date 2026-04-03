@@ -40,6 +40,33 @@
           default = pkgs.zellij;
           inherit zjstatus-wasm;
         };
+
+        formatter = pkgs.nixfmt-rfc-style;
+
+        checks = {
+          # Verify that lib.nix evaluates and exports the expected attributes.
+          lib-eval =
+            let
+              zLib = import ./lib.nix;
+              assertions = [
+                (builtins.isString zLib.topBar)
+                (builtins.isString zLib.bottomBar)
+              ];
+            in
+            assert builtins.all (x: x) assertions;
+            pkgs.runCommand "lib-eval-check" { } "touch $out";
+
+          # Verify that the formatter has been applied (no diff produced).
+          formatting = pkgs.runCommand "formatting-check"
+            {
+              nativeBuildInputs = [ pkgs.nixfmt-rfc-style ];
+            }
+            ''
+              nixfmt --check ${./flake.nix} ${./lib.nix} ${./module.nix} \
+                ${./modules/home-manager/common/zellij.nix}
+              touch $out
+            '';
+        };
       }
     )
     // {
