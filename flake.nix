@@ -43,15 +43,16 @@
             pkgs.runCommand "lib-eval-check" { } "touch $out";
 
           # Verify that the formatter has been applied (no diff produced).
-          formatting = pkgs.runCommand "formatting-check"
-            {
-              nativeBuildInputs = [ pkgs.nixfmt-rfc-style ];
-            }
-            ''
-              nixfmt --check ${./flake.nix} ${./lib.nix} ${./module.nix} \
-                ${./modules/home-manager/common/zellij.nix}
-              touch $out
-            '';
+          formatting =
+            pkgs.runCommand "formatting-check"
+              {
+                nativeBuildInputs = [ pkgs.nixfmt-rfc-style ];
+              }
+              ''
+                nixfmt --check ${./flake.nix} ${./lib.nix} ${./module.nix} \
+                  ${./modules/home-manager/common/zellij.nix}
+                touch $out
+              '';
         };
       }
     )

@@ -2,7 +2,7 @@
   # KDL configuration for the Top Bar (Tabs, Session, User@Host)
   topBar = ''
     // Top bar: Seamless "Double Pill" style
-    
+
     format_left   "#[fg=#89B4FA,bg=#181825]#[fg=#181825,bg=#89B4FA,bold]  #[fg=#cdd6f4,bg=#313244,bold] {session} #[fg=#313244,bg=#181825] {tabs}"
     format_right  "#[fg=#f9e2af,bg=#181825]#[fg=#181825,bg=#f9e2af,bold] 󰃭 #[fg=#cdd6f4,bg=#313244,bold] {command_user_host} #[fg=#313244,bg=#181825]"
     format_space  "#[bg=#181825]"
