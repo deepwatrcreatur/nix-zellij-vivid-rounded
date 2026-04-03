@@ -19,7 +19,8 @@
     // Active: Green Index, Surface2 (Brighter) Name
     tab_active   "#[fg=#a6e3a1,bg=#181825]#[fg=#181825,bg=#a6e3a1,bold] {index} #[fg=#cdd6f4,bg=#585b70,bold] {name} #[fg=#585b70,bg=#181825,bold] "
 
-    command_user_host_command     "sh -c 'echo $USER@$(hostname)'"
+    // $USER and hostname(1) are POSIX/widely available on Linux, macOS, and BSD.
+    command_user_host_command     "sh -c 'echo $USER@$(hostname -s 2>/dev/null || hostname)'"
     command_user_host_format      "{stdout}"
     command_user_host_interval    "60"
     command_user_host_rendermode  "static"
@@ -47,7 +48,10 @@
     mode_session "#[fg=#181825,bg=#cba6f7,bold] SESSION #[fg=#cba6f7,bg=#181825]"
 
     // Memory Usage
-    command_memory_command     "bash -c 'free -h | grep Mem | awk \"{print \\$3 \\\"/\\\" \\$2}\" '"
+    // free(1) is Linux-specific; the command falls back to "N/A" on other systems.
+    // Override memoryCommand in the module option to use vm_stat(1) on macOS or
+    // any other host-specific tool.
+    command_memory_command     "sh -c 'free -h 2>/dev/null | awk \"/^Mem:/{print \\$3 \\\"/\\\" \\$2}\" || echo N/A'"
     command_memory_format      "{stdout}"
     command_memory_interval    "5"
     command_memory_rendermode  "static"
