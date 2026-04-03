@@ -12,16 +12,23 @@
       nixpkgs,
       flake-utils,
     }:
+    let
+      # zjstatus is a WASM plugin — the binary is architecture-independent.
+      # Define it once here so the URL/hash stays in a single place.
+      zjstatusVersion = "0.17.0";
+      zjstatusUrl = "https://github.com/dj95/zjstatus/releases/download/v${zjstatusVersion}/zjstatus.wasm";
+      zjstatusSha256 = "1rbvazam9qdj2z21fgzjvbyp5mcrxw28nprqsdzal4dqbm5dy112";
+    in
     flake-utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
         zjstatus-wasm = (pkgs.fetchurl {
-          url = "https://github.com/dj95/zjstatus/releases/download/v0.17.0/zjstatus.wasm";
-          sha256 = "1rbvazam9qdj2z21fgzjvbyp5mcrxw28nprqsdzal4dqbm5dy112";
+          url = zjstatusUrl;
+          sha256 = zjstatusSha256;
         }).overrideAttrs (_: {
           meta = {
-            description = "zjstatus plugin WASM binary for Zellij (v0.17.0)";
+            description = "zjstatus plugin WASM binary for Zellij (v${zjstatusVersion})";
             homepage = "https://github.com/dj95/zjstatus";
             license = pkgs.lib.licenses.mit;
             platforms = pkgs.lib.platforms.all;
