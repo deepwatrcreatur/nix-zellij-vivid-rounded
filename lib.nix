@@ -11,8 +11,6 @@
 
     border_enabled  "false"
 
-    border_enabled  "false"
-
     // Tabs: Accented Index + Name. Active gets brighter background.
     // Normal: Green Index, Surface0 Name
     tab_normal   "#[fg=#a6e3a1,bg=#181825]#[fg=#181825,bg=#a6e3a1,bold] {index} #[fg=#cdd6f4,bg=#313244] {name} #[fg=#313244,bg=#181825] "
