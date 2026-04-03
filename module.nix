@@ -13,6 +13,14 @@ let
   zjstatus-wasm = themeLib.mkZjstatusWasm pkgs;
 in
 {
+  meta.maintainers = [
+    {
+      name = "Anwer Khan";
+      github = "deepwatrcreatur";
+      email = "deepwatrcreatur@gmail.com";
+    }
+  ];
+
   options.programs.zellij-vivid-rounded = {
     enable = mkEnableOption "Zellij with vivid colors, rounded tabs, and Ctrl-Alt keybindings";
     showStartupTips = mkOption {

@@ -16,10 +16,17 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        zjstatus-wasm = pkgs.fetchurl {
+        zjstatus-wasm = (pkgs.fetchurl {
           url = "https://github.com/dj95/zjstatus/releases/download/v0.17.0/zjstatus.wasm";
           sha256 = "1rbvazam9qdj2z21fgzjvbyp5mcrxw28nprqsdzal4dqbm5dy112";
-        };
+        }).overrideAttrs (_: {
+          meta = {
+            description = "zjstatus plugin WASM binary for Zellij (v0.17.0)";
+            homepage = "https://github.com/dj95/zjstatus";
+            license = pkgs.lib.licenses.mit;
+            platforms = pkgs.lib.platforms.all;
+          };
+        });
       in
       {
         packages = {
