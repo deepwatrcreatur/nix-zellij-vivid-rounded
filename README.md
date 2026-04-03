@@ -22,8 +22,11 @@ A highly customized [Zellij](https://zellij.dev/) configuration for NixOS/home-m
 - **Overflow Handling**: Prioritizes keeping tabs visible when window width is limited.
 
 ### Clipboard & Text Selection
-- **Automatic copy-to-clipboard**: Text selection automatically copies to system clipboard
-- Works locally and over SSH (uses system clipboard backend)
+- **Automatic copy-to-clipboard**: Text selection automatically copies to the system clipboard (`copy_on_select = true`, `copy_clipboard = "system"`)
+- Works reliably in **local terminals**
+- **Over SSH**: requires the terminal emulator to support and forward [OSC 52](https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Operating-System-Commands) escape sequences, and the SSH session must not suppress them. Tested working with WezTerm and Kitty. May not work with older terminals, `tmux` without `set-clipboard on`, or restricted SSH servers.
+- **Wayland**: uses the system clipboard via the `system` backend; if your compositor doesn't expose a clipboard, try setting `copyClipboard = "primary"` to use the X11 primary selection instead.
+- If clipboard does not work in your environment, set `copy_on_select = false` (or `copyOnSelect = false` in the module option) and copy manually.
 
 ### Reusability (New in v1.0)
 - **Shared Theme Library**: The `lib.nix` file exports the KDL configuration strings (`topBar`, `bottomBar`).
