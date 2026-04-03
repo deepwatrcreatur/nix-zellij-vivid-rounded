@@ -23,19 +23,16 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        zjstatus-wasm =
-          (pkgs.fetchurl {
-            url = zjstatusUrl;
-            sha256 = zjstatusSha256;
-          }).overrideAttrs
-            (_: {
-              meta = {
-                description = "zjstatus plugin WASM binary for Zellij (v${zjstatusVersion})";
-                homepage = "https://github.com/dj95/zjstatus";
-                license = pkgs.lib.licenses.mit;
-                platforms = pkgs.lib.platforms.all;
-              };
-            });
+        zjstatus-wasm = pkgs.fetchurl {
+          url = zjstatusUrl;
+          sha256 = zjstatusSha256;
+          meta = {
+            description = "zjstatus plugin WASM binary for Zellij (v${zjstatusVersion})";
+            homepage = "https://github.com/dj95/zjstatus";
+            license = pkgs.lib.licenses.mit;
+            platforms = pkgs.lib.platforms.all;
+          };
+        };
       in
       {
         packages = {
@@ -59,16 +56,14 @@
             pkgs.runCommand "lib-eval-check" { } "touch $out";
 
           # Verify that the formatter has been applied (no diff produced).
-          formatting =
-            pkgs.runCommand "formatting-check"
-              {
-                nativeBuildInputs = [ pkgs.nixfmt-rfc-style ];
-              }
-              ''
-                nixfmt --check ${./flake.nix} ${./lib.nix} ${./module.nix} \
-                  ${./modules/home-manager/common/zellij.nix}
-                touch $out
-              '';
+          formatting = pkgs.runCommand "formatting-check"
+            {
+              nativeBuildInputs = [ pkgs.nixfmt-rfc-style ];
+            }
+            ''
+              nixfmt --check ${./.}
+              touch $out
+            '';
         };
       }
     )
