@@ -17,6 +17,14 @@ let
     });
 in
 {
+  meta.maintainers = [
+    {
+      name = "Anwer Khan";
+      github = "deepwatrcreatur";
+      email = "deepwatrcreatur@gmail.com";
+    }
+  ];
+
   options.programs.zellij-extended = {
     enable = mkEnableOption "Zellij configuration with catppuccin theme and Ctrl-Alt keybindings";
     showStartupTips = mkOption {
