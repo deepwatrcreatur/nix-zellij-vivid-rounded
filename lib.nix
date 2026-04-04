@@ -3,9 +3,8 @@ rec {
   # KDL escape helper: makes any string safe for embedding inside a KDL
   # "..." literal.  Replaces \ with \\\\ and " with \\", in that order.
   # ---------------------------------------------------------------------------
-  kdlEscape = s:
-    builtins.replaceStrings [ "\"" ] [ "\\\""  ]
-      (builtins.replaceStrings [ "\\" ] [ "\\\\" ] s);
+  kdlEscape =
+    s: builtins.replaceStrings [ "\"" ] [ "\\\"" ] (builtins.replaceStrings [ "\\" ] [ "\\\\" ] s);
 
   # ---------------------------------------------------------------------------
   # Parameterized KDL generators for the status bars.

@@ -88,21 +88,20 @@ in
     };
 
     # Define an extended layout with rounded corners and vivid colors
-    xdg.configFile."zellij/layouts/extended.kdl".text =
-      ''
-        layout {
-            pane size=1 borderless=true {
-                plugin location="file:${zjstatus-wasm}" {
-                    ${themeLib.mkTopBar { userHostCommand = cfg.userHostCommand; }}
-                }
-            }
-            pane
-            pane size=2 borderless=true {
-                plugin location="file:${zjstatus-wasm}" {
-                    ${themeLib.mkBottomBar { memoryCommand = cfg.memoryCommand; }}
-                }
-            }
-        }
-      '';
+    xdg.configFile."zellij/layouts/extended.kdl".text = ''
+      layout {
+          pane size=1 borderless=true {
+              plugin location="file:${zjstatus-wasm}" {
+                  ${themeLib.mkTopBar { userHostCommand = cfg.userHostCommand; }}
+              }
+          }
+          pane
+          pane size=2 borderless=true {
+              plugin location="file:${zjstatus-wasm}" {
+                  ${themeLib.mkBottomBar { memoryCommand = cfg.memoryCommand; }}
+              }
+          }
+      }
+    '';
   };
 }

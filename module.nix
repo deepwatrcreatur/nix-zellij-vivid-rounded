@@ -54,7 +54,10 @@ in
     };
 
     copyClipboard = mkOption {
-      type = types.enum [ "system" "primary" ];
+      type = types.enum [
+        "system"
+        "primary"
+      ];
       default = "system";
       description = "Which clipboard to use when copying on selection.";
     };
@@ -113,31 +116,37 @@ in
 
     # Define an extended layout with rounded corners and vivid colors
 
-    xdg.configFile."zellij/layouts/extended.kdl".text = ''
+    xdg.configFile."zellij/layouts/extended.kdl".text =
 
       ''
 
-                  ${themeLib.topBar}
+        layout {
 
-              }
+            pane size=1 borderless=true {
 
-          }
+                plugin location="file:${zjstatus-wasm}" {
 
                     ${themeLib.mkTopBar { userHostCommand = cfg.userHostCommand; }}
 
-          pane size=2 borderless=true {
+                }
 
-              plugin location="file:${zjstatus-wasm}" {
+            }
 
-                  ${themeLib.bottomBar}
+            pane
 
-              }
+            pane size=2 borderless=true {
 
-          }
+                plugin location="file:${zjstatus-wasm}" {
 
                     ${themeLib.mkBottomBar { memoryCommand = cfg.memoryCommand; }}
 
-    '';
+                }
+
+            }
+
+        }
+
+      '';
 
   };
 }
