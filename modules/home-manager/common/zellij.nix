@@ -49,28 +49,29 @@ in
         keybinds = themeLib.modalKeybinds // {
           # Esc → Normal in normal mode (no pass-through to application).
           normal = themeLib.normalModeKeybinds // {
-            "bind \"Esc\"" = { SwitchToMode = "Normal"; };
+            "bind \"Esc\"" = {
+              SwitchToMode = "Normal";
+            };
           };
         };
       };
     };
 
     # Define an extended layout with rounded corners and vivid colors
-    xdg.configFile."zellij/layouts/extended.kdl".text =
-      ''
-        layout {
-            pane size=1 borderless=true {
-                plugin location="file:${zjstatus-wasm}" {
-                    ${themeLib.topBar}
-                }
-            }
-            pane
-            pane size=2 borderless=true {
-                plugin location="file:${zjstatus-wasm}" {
-                    ${themeLib.bottomBar}
-                }
-            }
-        }
-      '';
+    xdg.configFile."zellij/layouts/extended.kdl".text = ''
+      layout {
+          pane size=1 borderless=true {
+              plugin location="file:${zjstatus-wasm}" {
+                  ${themeLib.topBar}
+              }
+          }
+          pane
+          pane size=2 borderless=true {
+              plugin location="file:${zjstatus-wasm}" {
+                  ${themeLib.bottomBar}
+              }
+          }
+      }
+    '';
   };
 }
