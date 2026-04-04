@@ -9,13 +9,8 @@ with lib;
 
 let
   cfg = config.programs.zellij-extended;
-  # Fetch zjstatus wasm directly since it's not in nixpkgs
-  zjstatus-wasm =
-    pkgs.zjstatus-wasm or (pkgs.fetchurl {
-      url = "https://github.com/dj95/zjstatus/releases/download/v0.17.0/zjstatus.wasm";
-      sha256 = "1rbvazam9qdj2z21fgzjvbyp5mcrxw28nprqsdzal4dqbm5dy112";
-    });
   themeLib = import ../../../lib.nix;
+  zjstatus-wasm = themeLib.mkZjstatusWasm pkgs;
 in
 {
   meta.maintainers = [
@@ -49,13 +44,13 @@ in
 
     userHostCommand = mkOption {
       type = types.str;
-      default = "sh -c 'echo $USER@$(hostname)'";
+      default = "sh -c 'echo $USER@$(hostname -s 2>/dev/null || hostname)'";
       description = "Shell command whose stdout is shown as user@host in the top bar.";
     };
 
     memoryCommand = mkOption {
       type = types.str;
-      default = "bash -c 'free -h | grep Mem | awk \"{print \\$3 \\\"/\\\" \\$2}\" '";
+      default = "sh -c 'free -h 2>/dev/null | awk \"/^Mem:/{print \\$3 \\\"/\\\" \\$2; ok=1} END{if(!ok) exit 1}\" || echo N/A'";
       description = "Shell command whose stdout is shown as memory usage in the bottom bar.";
     };
   };
