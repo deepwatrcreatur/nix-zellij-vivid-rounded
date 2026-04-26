@@ -1,8 +1,12 @@
-Status: `ready`
-Suggested branch: `refactor/zellij-flake-cleanup`
-Priority: `low`
+Status: `done`
 
-# Flake Complexity Cleanup
+Suggested branch: `refactor/zellij-flake-cleanup`
+
+## Progress
+
+- consolidated Home Manager modules into a shared base
+- improved flake checks with module evaluation coverage
+- added metadata to packages
 
 ## Goal
 

@@ -35,7 +35,7 @@ Highest value first:
 5. `05-lib-cleanups.md` - done
 6. `06-clipboard-and-remote-docs.md` - done
 7. `07-metadata-polish.md` - done
-8. `08-flake-complexity-cleanup.md` - ready
+8. `08-flake-complexity-cleanup.md` - done
 
 ## Source
 

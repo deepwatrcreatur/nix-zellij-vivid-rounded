@@ -1,8 +1,12 @@
-Status: `in-progress`
-Suggested branch: `refactor/zellij-module-dedup`
-Priority: `high`
+Status: `done`
 
-# Deduplicate Home Manager Modules
+Suggested branch: `refactor/zellij-module-dedup`
+
+## Progress
+
+- extracted shared Home Manager logic into `modules/home-manager/common/base.nix`
+- refactored `module.nix` and `modules/home-manager/common/zellij.nix` to use the base module
+- verified clean evaluation via `module-eval` flake check
 
 ## Goal
 
