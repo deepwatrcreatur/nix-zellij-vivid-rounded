@@ -1,8 +1,11 @@
-Status: `ready`
-Suggested branch: `docs/zellij-clipboard-caveats`
-Priority: `medium`
+Status: `done`
 
-# Clipboard And Remote Docs
+Suggested branch: `docs/zellij-clipboard-caveats`
+
+## Progress
+
+- added explicit `Troubleshooting` section to `README.md`
+- documented OSC 52 and Tmux-related clipboard caveats
 
 ## Goal
 

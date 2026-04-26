@@ -133,6 +133,19 @@ If you are assigning or running coding agents, start here:
 
 The seed roadmap behind that queue is tracked in [`IMPROVEMENTS.md`](IMPROVEMENTS.md).
 
+## Troubleshooting
+
+### Clipboard not working over SSH
+If you find that selecting text does not copy to your local machine:
+1. **OSC 52 Support**: Ensure your local terminal supports OSC 52 (e.g., Alacritty, WezTerm, Kitty, iTerm2).
+2. **Tmux Conflict**: If you run Zellij inside Tmux, you must have `set -s set-clipboard on` in your `.tmux.conf`.
+3. **Restricted Shells**: Some restricted environments or terminal multiplexers on the remote side may block escape sequences.
+
+### Config changes not applying
+Zellij often caches its configuration during a session. If you change your Home Manager settings:
+1. Run `home-manager switch`.
+2. Completely quit all Zellij sessions (`Ctrl+Alt+q`) and restart.
+
 ## License
 
 MIT

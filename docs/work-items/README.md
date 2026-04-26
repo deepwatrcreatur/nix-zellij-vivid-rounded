@@ -33,7 +33,7 @@ Highest value first:
 3. `03-flake-checks-and-ci.md` - done
 4. `04-status-bar-portability.md` - done
 5. `05-lib-cleanups.md` - done
-6. `06-clipboard-and-remote-docs.md` - ready
+6. `06-clipboard-and-remote-docs.md` - done
 7. `07-metadata-polish.md` - ready
 8. `08-flake-complexity-cleanup.md` - ready
 
