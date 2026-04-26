@@ -82,10 +82,22 @@ in
       description = "Shell command whose stdout is shown as user@host in the top bar.";
     };
 
+    userHostInterval = mkOption {
+      type = types.int;
+      default = 60;
+      description = "Refresh interval in seconds for the user@host command.";
+    };
+
     memoryCommand = mkOption {
       type = types.str;
       default = "sh -c 'free -h 2>/dev/null | awk \"/^Mem:/{print \\$3 \\\"/\\\" \\$2; ok=1} END{if(!ok) exit 1}\" || echo N/A'";
       description = "Shell command whose stdout is shown as memory usage in the bottom bar.";
+    };
+
+    memoryInterval = mkOption {
+      type = types.int;
+      default = 5;
+      description = "Refresh interval in seconds for the memory command.";
     };
   };
 
@@ -129,13 +141,19 @@ in
       layout {
           pane size=1 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  ${themeLib.mkTopBar { userHostCommand = cfg.userHostCommand; }}
+                  ${themeLib.mkTopBar {
+                    userHostCommand = cfg.userHostCommand;
+                    userHostInterval = toString cfg.userHostInterval;
+                  }}
               }
           }
           pane
           pane size=2 borderless=true {
               plugin location="file:${zjstatus-wasm}" {
-                  ${themeLib.mkBottomBar { memoryCommand = cfg.memoryCommand; }}
+                  ${themeLib.mkBottomBar {
+                    memoryCommand = cfg.memoryCommand;
+                    memoryInterval = toString cfg.memoryInterval;
+                  }}
               }
           }
       }

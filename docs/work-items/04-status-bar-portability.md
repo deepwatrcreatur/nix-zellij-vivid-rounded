@@ -1,8 +1,12 @@
-Status: `ready`
-Suggested branch: `fix/zellij-status-portability`
-Priority: `medium`
+Status: `done`
 
-# Status Bar Portability
+Suggested branch: `fix/zellij-status-portability`
+
+## Progress
+
+- parameterized `userHostCommand` and `memoryCommand` in `lib.nix` and `module.nix`
+- added `userHostInterval` and `memoryInterval` options for better configurability
+- documented host-tool assumptions (e.g. `free -h` for Linux) in option descriptions
 
 ## Goal
 

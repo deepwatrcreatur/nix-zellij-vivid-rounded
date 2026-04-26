@@ -14,6 +14,8 @@ rec {
     {
       # Shell command whose stdout is shown as "user@host" in the top-right.
       userHostCommand ? "sh -c 'echo $USER@$(hostname -s 2>/dev/null || hostname)'",
+      # Refresh interval in seconds.
+      userHostInterval ? "60",
     }:
     ''
       // Top bar: Seamless "Double Pill" style
@@ -34,7 +36,7 @@ rec {
 
       command_user_host_command     "${kdlEscape userHostCommand}"
       command_user_host_format      "{stdout}"
-      command_user_host_interval    "60"
+      command_user_host_interval    "${userHostInterval}"
       command_user_host_rendermode  "static"
     '';
 
@@ -44,6 +46,8 @@ rec {
       # free(1) is Linux-specific; falls back to "N/A" on other systems.
       # Override this option to use vm_stat(1) on macOS or another tool.
       memoryCommand ? "sh -c 'free -h 2>/dev/null | awk \"/^Mem:/{print \\$3 \\\"/\\\" \\$2; ok=1} END{if(!ok) exit 1}\" || echo N/A'",
+      # Refresh interval in seconds.
+      memoryInterval ? "5",
     }:
     ''
       // Bottom bar
@@ -68,7 +72,7 @@ rec {
       // Memory Usage
       command_memory_command     "${kdlEscape memoryCommand}"
       command_memory_format      "{stdout}"
-      command_memory_interval    "5"
+      command_memory_interval    "${memoryInterval}"
       command_memory_rendermode  "static"
     '';
 
