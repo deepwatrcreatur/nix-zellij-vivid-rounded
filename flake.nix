@@ -36,7 +36,12 @@
       in
       {
         packages = {
-          default = pkgs.zellij;
+          default = pkgs.zellij.overrideAttrs (old: {
+            meta = (old.meta or { }) // {
+              description = "Zellij terminal multiplexer with vivid colors, rounded tabs, and Ctrl-Alt keybindings";
+              homepage = "https://github.com/deepwatrcreatur/nix-zellij-vivid-rounded";
+            };
+          });
           inherit zjstatus-wasm;
         };
 

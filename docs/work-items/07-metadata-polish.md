@@ -1,8 +1,11 @@
-Status: `ready`
-Suggested branch: `chore/zellij-meta-polish`
-Priority: `low`
+Status: `done`
 
-# Metadata Polish
+Suggested branch: `chore/zellij-meta-polish`
+
+## Progress
+
+- added `meta` information to the `default` package in `flake.nix`
+- confirmed `module.nix` already contains maintainer information
 
 ## Goal
 
