@@ -65,6 +65,45 @@
                 nixfmt --check ${./.}
                 touch $out
               '';
+
+          # Verify that the Home Manager module evaluates cleanly.
+          module-eval =
+            let
+              # Simple Home Manager evaluation mockup
+              hmEval = nixpkgs.lib.evalModules {
+                modules = [
+                  ./module.nix
+                  {
+                    options = {
+                      meta = nixpkgs.lib.mkOption { };
+                      home.stateVersion = nixpkgs.lib.mkOption { };
+                      home.username = nixpkgs.lib.mkOption { };
+                      home.homeDirectory = nixpkgs.lib.mkOption { };
+                      xdg.configFile = nixpkgs.lib.mkOption { };
+                      xdg.configHome = nixpkgs.lib.mkOption {
+                        default = "/home/test-user/.config";
+                      };
+                      # Mock programs.zellij since our module sets it
+                      programs.zellij.enable = nixpkgs.lib.mkOption { default = false; };
+                      programs.zellij.settings = nixpkgs.lib.mkOption { default = { }; };
+                    };
+                    config = {
+                      home.stateVersion = "25.11";
+                      home.username = "test-user";
+                      home.homeDirectory = "/home/test-user";
+                      programs.zellij-vivid-rounded.enable = true;
+                    };
+                  }
+                ];
+                specialArgs = {
+                  inherit pkgs;
+                };
+              };
+            in
+            if hmEval.config.programs.zellij.enable then
+              pkgs.runCommand "module-eval-check" { } "touch $out"
+            else
+              throw "programs.zellij.enable not set by programs.zellij-vivid-rounded.enable";
         };
       }
     )

@@ -30,7 +30,7 @@ Highest value first:
 
 1. `01-deduplicate-home-manager-modules.md` - done
 2. `02-module-customization-options.md` - done
-3. `03-flake-checks-and-ci.md` - ready
+3. `03-flake-checks-and-ci.md` - done
 4. `04-status-bar-portability.md` - ready
 5. `05-lib-cleanups.md` - ready
 6. `06-clipboard-and-remote-docs.md` - ready

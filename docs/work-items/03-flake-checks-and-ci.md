@@ -1,8 +1,12 @@
-Status: `ready`
-Suggested branch: `feat/zellij-flake-checks`
-Priority: `high`
+Status: `done`
 
-# Flake Checks And CI
+Suggested branch: `feat/zellij-flake-checks`
+
+## Progress
+
+- added `formatting` check using `nixfmt-rfc-style`
+- added `lib-eval` check to verify `topBar` and `bottomBar` strings
+- added `module-eval` check with Home Manager mockup to verify declarative settings
 
 ## Goal
 
