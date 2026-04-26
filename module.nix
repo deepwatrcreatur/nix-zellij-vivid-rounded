@@ -57,6 +57,19 @@ in
       description = "Which clipboard to use when copying on selection.";
     };
 
+    keybindingStrategy = mkOption {
+      type = types.enum [
+        "standard"
+        "ctrl-alt"
+      ];
+      default = "ctrl-alt";
+      description = ''
+        Which keybinding strategy to use.
+        `standard`: Default Zellij keybindings (Ctrl-p, Ctrl-t, etc.)
+        `ctrl-alt`: Overrides most Ctrl-based bindings with Ctrl-Alt to avoid TUI conflicts.
+      '';
+    };
+
     roundedCorners = mkOption {
       type = types.bool;
       default = true;
@@ -101,11 +114,13 @@ in
         # Define Catppuccin Mocha theme locally to ensure it's available
         themes.catppuccin-mocha = themeLib.catppuccinMochaTheme;
 
-        keybinds = themeLib.modalKeybinds // {
-          # Esc is intentionally not bound in normal mode so it is passed
-          # through to the running application.
-          normal = themeLib.normalModeKeybinds;
-        };
+        keybinds = mkMerge [
+          (mkIf (cfg.keybindingStrategy == "ctrl-alt") (themeLib.modalKeybinds // {
+            normal = themeLib.ctrlAltNormalModeKeybinds;
+          }))
+          # If standard, we just use defaults (empty attrset here means no overrides)
+          (mkIf (cfg.keybindingStrategy == "standard") { })
+        ];
       };
     };
 

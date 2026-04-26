@@ -1,8 +1,12 @@
-Status: `ready`
-Suggested branch: `feat/zellij-module-options`
-Priority: `high`
+Status: `done`
 
-# Module Customization Options
+Suggested branch: `feat/zellij-module-options`
+
+## Progress
+
+- added `keybindingStrategy` option to toggle between `standard` and `ctrl-alt`
+- added `theme`, `layout`, `copyOnSelect`, `copyClipboard`, `roundedCorners` options
+- added `userHostCommand` and `memoryCommand` status command options
 
 ## Goal
 

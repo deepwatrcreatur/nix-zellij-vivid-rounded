@@ -28,14 +28,14 @@ This folder is the agent-facing queue for `nix-zellij-vivid-rounded`.
 
 Highest value first:
 
-1. `01-deduplicate-home-manager-modules.md`
-2. `02-module-customization-options.md`
-3. `03-flake-checks-and-ci.md`
-4. `04-status-bar-portability.md`
-5. `05-lib-cleanups.md`
-6. `06-clipboard-and-remote-docs.md`
-7. `07-metadata-polish.md`
-8. `08-flake-complexity-cleanup.md`
+1. `01-deduplicate-home-manager-modules.md` - done
+2. `02-module-customization-options.md` - done
+3. `03-flake-checks-and-ci.md` - ready
+4. `04-status-bar-portability.md` - ready
+5. `05-lib-cleanups.md` - ready
+6. `06-clipboard-and-remote-docs.md` - ready
+7. `07-metadata-polish.md` - ready
+8. `08-flake-complexity-cleanup.md` - ready
 
 ## Source
 

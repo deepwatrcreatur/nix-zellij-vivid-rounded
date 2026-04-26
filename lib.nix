@@ -101,10 +101,14 @@ rec {
     white = "#cdd6f4"; # Text
   };
 
+  # ---------------------------------------------------------------------------
+  # Keybindings
+  # ---------------------------------------------------------------------------
+
   # Shared normal-mode bindings without an Esc binding so that Esc is passed
   # through to the running application (the default for zellij-vivid-rounded).
   # Modules that want Esc → Normal can merge in their own binding on top.
-  normalModeKeybinds = {
+  ctrlAltNormalModeKeybinds = {
     # Unbind default Ctrl keybindings to allow TUI apps to use them
     "unbind \"Ctrl t\"" = { };
     "unbind \"Ctrl p\"" = { };
@@ -201,6 +205,9 @@ rec {
       Quit = { };
     };
   };
+
+  # Legacy alias for backwards compatibility
+  normalModeKeybinds = ctrlAltNormalModeKeybinds;
 
   # Keybinds for all modes other than normal.
   modalKeybinds = {
